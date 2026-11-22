@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BREATHE — Design Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;500;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12161a; --paper:#f4f1ea; --line:rgba(18,22,26,.14); --muted:rgba(18,22,26,.66);
+    --a:#9a5518; --b:#3d6474; --c:#8a4a1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Archivo",system-ui,sans-serif;font-weight:300;
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin-inline:auto;padding:clamp(1.4rem,4vw,4rem) clamp(1.1rem,3.5vw,2.5rem) 5rem}
+  header{border-bottom:1.5px solid var(--ink);padding-bottom:1.6rem;margin-bottom:clamp(2rem,4vw,3.2rem)}
+  .eyebrow{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  h1{
+    font-weight:800;font-size:clamp(2rem,5.6vw,3.6rem);line-height:.98;
+    letter-spacing:-.045em;text-transform:uppercase;margin:.7rem 0 1rem;
+  }
+  header p{margin:0;max-width:60ch;color:var(--muted);font-size:.98rem}
+  .cards{display:grid;gap:clamp(1rem,2.4vw,1.6rem)}
+  .card{
+    border:1.5px solid var(--ink);background:#fbf9f4;
+    display:grid;grid-template-columns:1fr auto;gap:1.4rem;
+    padding:clamp(1.2rem,2.6vw,1.9rem);text-decoration:none;color:inherit;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .card:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink)}
+  .card__meta{display:flex;gap:.6rem;align-items:baseline;margin-bottom:.7rem;flex-wrap:wrap}
+  .tag{
+    font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+    padding:.24rem .55rem;border:1px solid var(--line);border-radius:999px;color:var(--muted);
+  }
+  .card h2{
+    font-weight:800;font-size:clamp(1.35rem,3vw,2rem);letter-spacing:-.035em;
+    margin:0 0 .55rem;line-height:1.05;text-transform:uppercase;
+  }
+  .card p{margin:0 0 .9rem;color:var(--muted);font-size:.92rem;max-width:62ch}
+  .swatches{display:flex;gap:.35rem;margin-bottom:.9rem}
+  .swatches i{width:26px;height:26px;border:1px solid rgba(0,0,0,.15);display:block}
+  .fonts{font-size:.8rem;color:var(--muted)}
+  .fonts b{font-weight:500;color:var(--ink)}
+  .go{
+    align-self:center;white-space:nowrap;
+    font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+    border-bottom:1.5px solid var(--ink);padding-bottom:.15rem;
+  }
+  .note{
+    margin-top:clamp(2.2rem,4vw,3.4rem);border-top:1.5px solid var(--line);padding-top:1.6rem;
+    color:var(--muted);font-size:.9rem;
+  }
+  .note h3{font-weight:500;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0 0 .8rem}
+  .note ul{margin:0;padding-left:1.15rem;display:grid;gap:.4rem}
+  code{font-family:ui-monospace,monospace;font-size:.86em;background:rgba(18,22,26,.07);padding:.1em .35em}
+  @media(max-width:720px){
+    .card{grid-template-columns:1fr}
+    .go{justify-self:start}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">BREATHE &middot; Website redesign &middot; Round one</p>
+    <h1>Three directions</h1>
+    <p>
+      Real, responsive, single-file prototypes — same content, three different
+      design languages. All three are static HTML with no build step and nothing but
+      Google Fonts and the existing festival photography as external dependencies.
+      Open each at desktop and phone widths.
+    </p>
+  </header>
+
+  <div class="cards">
+    <a class="card" href="a-golden-hour.html">
+      <div>
+        <div class="card__meta">
+          <span class="tag">Option A</span>
+          <span class="tag">Warm &middot; Editorial</span>
+        </div>
+        <h2>Golden Hour</h2>
+        <p>
+          Deep forest green, warm cream, and amber. A high-contrast serif display face over a
+          clean grotesque, generous whitespace, and full-bleed photography. The most
+          <b>premium and calm</b> of the three — closer to a beautifully printed book than a
+          festival flyer. Leans on the existing brand colours and makes them feel expensive.
+        </p>
+        <div class="swatches">
+          <i style="background:#1b2620"></i><i style="background:#f5f0e6"></i>
+          <i style="background:#d4823a"></i><i style="background:#8c9a83"></i>
+        </div>
+        <p class="fonts">Type: <b>Fraunces</b> (variable serif) &middot; <b>Karla</b></p>
+      </div>
+      <span class="go">Open &rarr;</span>
+    </a>
+
+    <a class="card" href="b-field-notes.html">
+      <div>
+        <div class="card__meta">
+          <span class="tag">Option B</span>
+          <span class="tag">Bold &middot; Swiss</span>
+        </div>
+        <h2>Field Notes</h2>
+        <p>
+          The site as a well-designed field manual: paper stock, hairline rules, numbered
+          sections, monospace labels, and heavyweight condensed type. Information-dense and
+          confident. Best of the three at making the <b>practical details</b> — venue, camping,
+          gate hours, applications — feel like part of the brand instead of a chore.
+        </p>
+        <div class="swatches">
+          <i style="background:#0e1618"></i><i style="background:#f1ede3"></i>
+          <i style="background:#e39856"></i><i style="background:#5b899b"></i>
+        </div>
+        <p class="fonts">Type: <b>Archivo</b> &middot; <b>JetBrains Mono</b></p>
+      </div>
+      <span class="go">Open &rarr;</span>
+    </a>
+
+    <a class="card" href="c-afterglow.html">
+      <div>
+        <div class="card__meta">
+          <span class="tag">Option C</span>
+          <span class="tag">Cinematic &middot; Atmospheric</span>
+        </div>
+        <h2>Afterglow</h2>
+        <p>
+          Near-black, firelight ember, and an editorial serif. Photography-first with
+          cinematic full-bleed sections and glass panels. The most <b>emotional and evocative</b>
+          — it sells the feeling of being there at dusk. Strongest for a first-time visitor who
+          doesn't yet know what BREATHE is.
+        </p>
+        <div class="swatches">
+          <i style="background:#0c1116"></i><i style="background:#efe9dd"></i>
+          <i style="background:#e07a38"></i><i style="background:#93a7b3"></i>
+        </div>
+        <p class="fonts">Type: <b>Instrument Serif</b> &middot; <b>Inter Tight</b></p>
+      </div>
+      <span class="go">Open &rarr;</span>
+    </a>
+  </div>
+
+  <div class="note">
+    <h3>Notes on all three</h3>
+    <ul>
+      <li>Responsive from 320&nbsp;px to ultrawide; no horizontal overflow at any width tested.</li>
+      <li>WCAG&nbsp;AA contrast verified programmatically — small text &ge;&nbsp;4.5:1, large text &ge;&nbsp;3:1. Zero failures.</li>
+      <li>Keyboard focus visible, <code>prefers-reduced-motion</code> respected.</li>
+      <li>No JS framework, no build step — every page is one HTML file, ready for GitHub Pages.</li>
+      <li>Photography is pulled from the existing site so the mockups read as real, not as grey boxes.</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

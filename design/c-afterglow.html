@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BREATHE — Option C · Afterglow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:ital,wght@0,200..800;1,200..400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0c1116;
+    --night-2:#121a21;
+    --night-3:#1a242d;
+    --bone:#efe9dd;
+    --ember:#e07a38;
+    --ember-soft:#f0a468;
+    --mist:#93a7b3;
+    --line:rgba(239,233,221,.14);
+    --line-2:rgba(239,233,221,.28);
+
+    --f-display:"Instrument Serif",Georgia,serif;
+    --f-body:"Inter Tight",system-ui,sans-serif;
+
+    --pad:clamp(1.15rem,4.5vw,5.5rem);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--night);color:var(--bone);
+    font-family:var(--f-body);font-weight:300;
+    font-size:clamp(.98rem,.95rem + .18vw,1.06rem);
+    line-height:1.68;letter-spacing:.002em;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  .shell{max-width:1360px;margin-inline:auto;padding-inline:var(--pad)}
+  .narrow{max-width:74ch}
+
+  /* film grain */
+  .grain{
+    position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.055;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- type ---------- */
+  .kicker{
+    font-size:.66rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--ember-soft);
+  }
+  .kicker--dim{color:rgba(239,233,221,.66)}
+  h2.display{
+    font-family:var(--f-display);font-weight:400;
+    font-size:clamp(2.3rem,5.6vw,4.9rem);
+    line-height:.98;letter-spacing:-.014em;margin:0;
+    text-wrap:balance;
+  }
+  h2.display em{font-style:italic;color:var(--ember-soft)}
+  .lede{
+    font-size:clamp(1.05rem,1.55vw,1.34rem);line-height:1.62;font-weight:300;
+    color:rgba(239,233,221,.76);max-width:52ch;
+  }
+
+  /* ---------- nav ---------- */
+  .bar{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    transition:background .45s,backdrop-filter .45s,border-color .45s;
+    border-bottom:1px solid transparent;
+  }
+  .bar.solid{
+    background:rgba(12,17,22,.8);backdrop-filter:blur(18px) saturate(1.3);
+    border-bottom-color:var(--line);
+  }
+  .bar__in{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .logo{
+    font-family:var(--f-display);font-size:1.32rem;letter-spacing:.5em;
+    text-transform:uppercase;padding-left:.5em;font-weight:400;
+  }
+  .bar nav{display:flex;gap:2.1rem;font-size:.83rem;letter-spacing:.06em}
+  .bar nav a{color:rgba(239,233,221,.7);transition:color .25s;position:relative;padding-block:.3rem}
+  .bar nav a::after{
+    content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
+    background:var(--ember-soft);transition:right .3s ease;
+  }
+  .bar nav a:hover{color:var(--bone)}
+  .bar nav a:hover::after{right:0}
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    padding:.72rem 1.5rem;border-radius:999px;
+    font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+    border:1px solid var(--line-2);color:var(--bone);
+    transition:background .3s,color .3s,border-color .3s,transform .3s;
+    background:transparent;
+  }
+  .btn:hover{background:var(--bone);color:var(--night);border-color:var(--bone)}
+  .btn--ember{background:var(--ember);border-color:var(--ember);color:#140a04}
+  .btn--ember:hover{background:var(--ember-soft);border-color:var(--ember-soft);color:#140a04}
+  .btn--quiet{padding:.5rem 0;border:0;border-bottom:1px solid var(--line-2);border-radius:0}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;min-height:100svh;display:flex;flex-direction:column;
+    justify-content:flex-end;overflow:hidden;isolation:isolate;
+  }
+  .hero__bg{
+    position:absolute;inset:0;z-index:-3;
+    width:100%;height:100%;object-fit:cover;
+    filter:brightness(.62) saturate(.9);
+    animation:push 40s ease-in-out infinite alternate;
+  }
+  @keyframes push{to{transform:scale(1.12)}}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background:
+      radial-gradient(70% 55% at 20% 100%, rgba(224,122,56,.30), transparent 70%),
+      linear-gradient(180deg,rgba(12,17,22,.86) 0%,rgba(12,17,22,.18) 42%,rgba(12,17,22,.72) 78%,var(--night) 100%);
+  }
+  .hero__in{
+    padding-block:clamp(3rem,10vh,7rem) clamp(1.6rem,4vh,2.6rem);
+    position:relative;z-index:1;
+  }
+  .hero h1{
+    font-family:var(--f-display);font-weight:400;
+    font-size:clamp(2.9rem,9.4vw,8.6rem);
+    line-height:.9;letter-spacing:-.026em;margin:1rem 0 0;
+  }
+  .hero h1 em{font-style:italic;color:var(--ember-soft);display:block}
+  .hero__foot{
+    margin-top:clamp(2rem,5vw,3.2rem);
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:2.4rem;flex-wrap:wrap;
+    padding-top:1.6rem;border-top:1px solid var(--line);
+  }
+  .hero__foot p{margin:0;max-width:46ch;color:rgba(239,233,221,.74);font-size:clamp(.96rem,1.2vw,1.06rem);line-height:1.62}
+  .hero__cta{display:flex;gap:.7rem;flex-wrap:wrap}
+
+  .scrolldot{
+    position:absolute;bottom:1.1rem;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:.55rem;
+    font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;
+    color:rgba(239,233,221,.62);
+  }
+  .scrolldot i{display:block;width:1px;height:36px;background:linear-gradient(var(--line-2),transparent);animation:fall 2.6s ease-in-out infinite}
+  @keyframes fall{0%{opacity:0;transform:scaleY(.2)}50%{opacity:1}100%{opacity:0;transform:scaleY(1)}}
+
+  /* ---------- manifesto ---------- */
+  .manifesto{padding-block:clamp(4.5rem,11vw,9rem)}
+  .manifesto__grid{
+    display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,1fr);
+    gap:clamp(2rem,6vw,6rem);align-items:start;
+  }
+  .manifesto__aside{position:sticky;top:7rem}
+  .manifesto__aside .kicker{display:block;margin-bottom:1.1rem}
+  .manifesto__body p{margin:0 0 1.5rem;color:rgba(239,233,221,.78);line-height:1.72}
+  .manifesto__body p:last-child{margin-bottom:0}
+  .pull{
+    font-family:var(--f-display);font-style:italic;
+    font-size:clamp(1.5rem,3.2vw,2.45rem);line-height:1.28;letter-spacing:-.01em;
+    color:var(--bone);margin:2.6rem 0;padding-left:1.6rem;
+    border-left:2px solid var(--ember);
+  }
+
+  /* ---------- photo strip / gallery ---------- */
+  .strip{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+    background:var(--night);
+  }
+  .strip figure{margin:0;position:relative;overflow:hidden;aspect-ratio:3/4}
+  .strip img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1);filter:saturate(.92)}
+  .strip figure:hover img{transform:scale(1.06)}
+  .strip figcaption{
+    position:absolute;left:1rem;bottom:1rem;right:1rem;
+    font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(239,233,221,.82);
+    opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s;
+    text-shadow:0 1px 12px rgba(0,0,0,.6);
+  }
+  .strip figure:hover figcaption{opacity:1;transform:none}
+
+  /* ---------- pillars ---------- */
+  .pillars{padding-block:clamp(4.5rem,11vw,9rem)}
+  .pillars__intro{max-width:52ch;margin-bottom:clamp(2.6rem,6vw,4.4rem)}
+  .pillars__intro h2{margin-top:1rem}
+  .pillars__list{display:grid;gap:0;border-top:1px solid var(--line)}
+  .prow{
+    display:grid;grid-template-columns:88px minmax(0,1fr) minmax(0,1.5fr);
+    gap:clamp(1.2rem,3vw,3rem);align-items:start;
+    padding-block:clamp(1.8rem,3.4vw,2.6rem);border-bottom:1px solid var(--line);
+    transition:background .4s,padding-inline .4s;
+  }
+  .prow:hover{background:rgba(239,233,221,.03);padding-inline:1rem}
+  .prow__idx{
+    font-family:var(--f-display);font-style:italic;
+    font-size:clamp(1.8rem,3vw,2.6rem);color:var(--ember);line-height:1;
+  }
+  .prow h3{
+    font-family:var(--f-display);font-weight:400;font-size:clamp(1.4rem,2.6vw,2.1rem);
+    margin:0;letter-spacing:-.01em;line-height:1.1;
+  }
+  .prow p{margin:0;color:rgba(239,233,221,.66);font-size:.95rem;line-height:1.68}
+
+  /* ---------- feature panel ---------- */
+  .feature{
+    position:relative;overflow:hidden;isolation:isolate;
+    padding-block:clamp(5rem,14vw,11rem);
+  }
+  .feature__bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;filter:brightness(.4) saturate(.9)}
+  .feature::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg,var(--night),rgba(12,17,22,.35) 45%,var(--night));
+  }
+  .feature__panel{
+    background:rgba(12,17,22,.62);backdrop-filter:blur(20px) saturate(1.2);
+    border:1px solid var(--line-2);
+    padding:clamp(1.8rem,4.5vw,3.6rem);
+    max-width:660px;
+  }
+  .feature__panel h2{margin:.9rem 0 1.3rem}
+  .feature__panel p{margin:0 0 1.15rem;color:rgba(239,233,221,.78);line-height:1.7}
+  .feature__panel p:last-child{margin-bottom:0}
+  .tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.8rem}
+  .tags span{
+    font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    padding:.42rem .8rem;border:1px solid var(--line-2);border-radius:999px;
+    color:rgba(239,233,221,.72);
+  }
+
+  /* ---------- cards / involved ---------- */
+  .involved{padding-block:clamp(4.5rem,11vw,9rem)}
+  .involved__head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2.4rem,5vw,3.6rem)}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.8rem,1.6vw,1.4rem)}
+  .tile{
+    border:1px solid var(--line);padding:clamp(1.4rem,2.6vw,2.1rem);
+    display:flex;flex-direction:column;gap:.8rem;min-height:260px;
+    transition:border-color .35s,background .35s,transform .35s;
+    position:relative;
+  }
+  .tile:hover{border-color:var(--line-2);background:rgba(239,233,221,.035);transform:translateY(-3px)}
+  .tile .kicker{color:rgba(239,233,221,.68)}
+  .tile h3{
+    font-family:var(--f-display);font-weight:400;font-size:1.55rem;margin:0;
+    letter-spacing:-.01em;line-height:1.15;
+  }
+  .tile p{margin:0;font-size:.9rem;line-height:1.62;color:rgba(239,233,221,.62);flex:1}
+  .tile__arw{
+    align-self:flex-start;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ember-soft);display:flex;align-items:center;gap:.45rem;
+  }
+  .tile:hover .tile__arw{gap:.8rem}
+
+  /* ---------- newsletter ---------- */
+  .signup{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding-block:clamp(3.4rem,8vw,6rem);position:relative;overflow:hidden;
+  }
+  .signup::after{
+    content:"";position:absolute;right:-12%;top:-40%;width:60vw;height:60vw;
+    background:radial-gradient(circle,rgba(224,122,56,.16),transparent 62%);
+    pointer-events:none;
+  }
+  .signup__grid{
+    display:grid;grid-template-columns:1fr .85fr;gap:clamp(2rem,6vw,5rem);
+    align-items:center;position:relative;z-index:1;
+  }
+  .signup h2{margin:.9rem 0 1rem}
+  .signup__grid > div > p{margin:0;color:rgba(239,233,221,.7);max-width:40ch}
+  form{display:grid;gap:.7rem}
+  form label{
+    font-size:.63rem;letter-spacing:.26em;text-transform:uppercase;
+    color:rgba(239,233,221,.7);
+  }
+  form input{
+    padding:.95rem 1.1rem;background:transparent;
+    border:1px solid var(--line-2);color:var(--bone);
+    font-family:var(--f-body);font-size:.96rem;font-weight:300;
+    transition:border-color .25s,background .25s;
+  }
+  form input::placeholder{color:rgba(239,233,221,.5)}
+  form input:focus{outline:0;border-color:var(--ember-soft);background:rgba(224,122,56,.06)}
+  form button{
+    padding:.95rem;border:0;cursor:pointer;
+    background:var(--bone);color:var(--night);
+    font-family:var(--f-body);font-size:.76rem;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;
+    transition:background .25s,color .25s;
+  }
+  form button:hover{background:var(--ember);color:#140a04}
+  .fineprint{font-size:.72rem;color:rgba(239,233,221,.66);margin:.35rem 0 0}
+
+  /* ---------- footer ---------- */
+  footer{padding-block:clamp(3rem,6vw,4.6rem) 2rem}
+  .foot__grid{
+    display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
+    gap:clamp(1.6rem,3.4vw,3rem);
+    padding-bottom:clamp(2.4rem,5vw,3.6rem);
+    border-bottom:1px solid var(--line);
+  }
+  .foot__mark{
+    font-family:var(--f-display);font-size:1.6rem;letter-spacing:.42em;
+    text-transform:uppercase;padding-left:.42em;margin:0 0 1rem;
+  }
+  .foot__grid p{margin:0;color:rgba(239,233,221,.7);font-size:.87rem;max-width:28ch;line-height:1.6}
+  .foot h4{
+    font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;font-weight:400;
+    color:rgba(239,233,221,.66);margin:0 0 1rem;
+  }
+  .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;font-size:.87rem}
+  .foot ul a{color:rgba(239,233,221,.76);transition:color .2s}
+  .foot ul a:hover{color:var(--ember-soft)}
+  .foot__bottom{
+    display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;
+    padding-top:1.6rem;font-size:.72rem;color:rgba(239,233,221,.62);
+    letter-spacing:.05em;
+  }
+
+  /* ---------- reveal ---------- */
+  .rv{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+
+  @media(max-width:1000px){
+    .manifesto__grid{grid-template-columns:1fr}
+    .manifesto__aside{position:static}
+    .strip{grid-template-columns:1fr}
+    .strip figure{aspect-ratio:16/10}
+    .prow{grid-template-columns:56px 1fr;row-gap:.9rem}
+    .prow p{grid-column:2}
+    .tiles{grid-template-columns:1fr}
+    .signup__grid{grid-template-columns:1fr}
+    .foot__grid{grid-template-columns:1fr 1fr}
+    .bar nav{display:none}
+  }
+
+  /* ---- keyboard focus (visible on both light + dark) ---- */
+  :focus-visible{
+    outline:3px solid #f0a468;
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #f0a468;outline-offset:3px}
+
+  /* ---- respect reduced motion ---- */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+      scroll-behavior:auto !important;
+    }
+    .rv{opacity:1 !important;transform:none !important}
+    .hero__photo,.hero__bg,.hero__media img{animation:none !important;transform:none !important}
+  }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="bar" id="bar">
+  <div class="shell bar__in">
+    <a class="logo" href="#">Breathe</a>
+    <nav aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#visit">Visit</a>
+      <a href="#involved">Get involved</a>
+    </nav>
+    <a class="btn" href="#signup">Newsletter</a>
+  </div>
+</div>
+
+<header class="hero">
+  <img class="hero__bg" alt="Slacklines strung above the pond at Deerfields" aria-hidden="true"
+       src="https://static.wixstatic.com/media/9f397e_15fa846847a3417b804e3df86226afd9~mv2.jpeg/v1/fill/w_2200,h_1300,al_c,q_85/file.jpg">
+  <div class="shell hero__in">
+    <p class="kicker">Deerfields &middot; Horse Shoe, North Carolina</p>
+    <h1>
+      Discover<br>your purpose.
+      <em>Awaken our world.</em>
+    </h1>
+    <div class="hero__foot">
+      <p>
+        A community grounded in the belief that everyone has a higher purpose. In connection
+        with nature, we create a space to explore, grow, and step into your full potential.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--ember" href="#signup">Be first to know</a>
+        <a class="btn" href="#experience">Explore the festival</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrolldot" aria-hidden="true"><span>Scroll</span><i></i></div>
+</header>
+
+<main>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto shell" id="about">
+    <div class="manifesto__grid">
+      <aside class="manifesto__aside rv">
+        <span class="kicker">01 &mdash; Who we are</span>
+        <h2 class="display">Something greater<br><em>than ourselves.</em></h2>
+      </aside>
+      <div class="manifesto__body rv">
+        <p>
+          BREATHE is a community grounded in the belief that everyone has a higher purpose.
+          Alongside Mother Nature we manifest an environment for each individual to discover
+          that purpose, write their own story, and achieve their highest potential.
+        </p>
+        <p>
+          The workshops, classes, performances, discussions, walks, and games that fill the
+          weekend aren't created by a hired programming team. They're created by people in this
+          community who are passionate about something and feel called to share it. Over the
+          years that has meant medicinal plant walks, movement practices, storytelling circles,
+          slackline workshops, music experiences, philosophy discussions, creative arts,
+          breathwork, and countless things we never could have imagined on our own.
+        </p>
+        <p class="pull">
+          We dissolve the barriers between the seen and the unseen, revealing a community
+          that is whole, inter-connected, and free.
+        </p>
+        <p>
+          We gather at Deerfields — a beautiful natural setting that invites us to slow down,
+          connect, and live simply together for the weekend. Primitive camping, well water,
+          outdoor showers, and a shared meal tent. No vendors. No spectacle. Just a community
+          building the thing it wants to attend.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO STRIP -->
+  <section class="strip">
+    <figure class="rv">
+      <img alt="The Balance Community Pond" loading="lazy"
+           src="https://static.wixstatic.com/media/9f397e_359f95435e39481992a129b5c2f6d688~mv2.jpg/v1/fill/w_900,h_1200,al_c,q_82/file.jpg">
+      <figcaption>The Balance Community Pond</figcaption>
+    </figure>
+    <figure class="rv">
+      <img alt="Tentsile hammock tents in the trees" loading="lazy"
+           src="https://static.wixstatic.com/media/9f397e_87e561277ca24a4bac2d7830433cb04c~mv2.jpg/v1/fill/w_900,h_1200,al_c,q_82/file.jpg">
+      <figcaption>Camping among the trees</figcaption>
+    </figure>
+    <figure class="rv">
+      <img alt="Highlines across the valley" loading="lazy"
+           src="https://static.wixstatic.com/media/9f397e_1648d2b1c7594386b39c4bc0e620af64~mv2.jpeg/v1/fill/w_900,h_1200,al_c,q_82/file.jpg">
+      <figcaption>Highlines at first light</figcaption>
+    </figure>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pillars shell" id="experience">
+    <div class="pillars__intro rv">
+      <span class="kicker">02 &mdash; The Jelly</span>
+      <h2 class="display">We are anchored by the balancing of <em>mind, body, and human spirit.</em></h2>
+    </div>
+
+    <div class="pillars__list">
+      <div class="prow rv">
+        <span class="prow__idx">i.</span>
+        <h3>Mind</h3>
+        <p>Through the selfless service of sharing our passions as teachers we build confidence, initiative, and connection. As students we gain new perspectives, inspiration, and sparks to take with us on our journey.</p>
+      </div>
+      <div class="prow rv">
+        <span class="prow__idx">ii.</span>
+        <h3>Body</h3>
+        <p>Through physical practices we challenge our own belief system of what our bodies are capable of — priming us to more fully receive, absorb, and integrate the intellectual and spiritual spectrums of Breathe.</p>
+      </div>
+      <div class="prow rv">
+        <span class="prow__idx">iii.</span>
+        <h3>Human Spirit</h3>
+        <p>Through giving and receiving without expectation we understand all is connected. The human spirit is the Jelly that forms a lasting, meaningful connection between all of us here at Breathe.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE / VENUE -->
+  <section class="feature" id="visit">
+    <img class="feature__bg" alt="" aria-hidden="true" loading="lazy"
+         src="https://static.wixstatic.com/media/9f397e_5f1a64b0600048008292f03a9cc69597~mv2.jpg/v1/fill/w_1800,h_1100,al_c,q_80/file.jpg">
+    <div class="shell">
+      <div class="feature__panel rv">
+        <span class="kicker">03 &mdash; Plan your visit</span>
+        <h2 class="display">Deerfields.<br>Horse Shoe, NC.</h2>
+        <p>
+          Twenty minutes south of Asheville, and twenty from the airport. Primitive camping is
+          included with a weekend pass, in Elysian Fields and Valhalla. Free overnight parking
+          is onsite, within walking distance of both campgrounds.
+        </p>
+        <p>
+          Potable well water is free; ice is available to purchase. The facility has no indoor
+          toilets or showers — we rely on port-o-johns and outdoor showers. Come prepared to be
+          self-reliant, and don't hesitate to lean on a neighbor to fill the gaps.
+        </p>
+        <p>
+          There are no food vendors onsite. A Community Meal Prep Tent has shared stoves,
+          tables, chairs, and basic utensils. Bring your own propane and specialty supplies.
+        </p>
+        <div class="tags">
+          <span>Camping included</span>
+          <span>Van &amp; RV spots</span>
+          <span>Free parking</span>
+          <span>Well water</span>
+          <span>Outdoor showers</span>
+          <span>No vendors</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVOLVED -->
+  <section class="involved shell" id="involved">
+    <div class="involved__head rv">
+      <div>
+        <span class="kicker">04 &mdash; Everyone contributes</span>
+        <h2 class="display" style="margin-top:1rem">Get <em>involved</em></h2>
+      </div>
+      <p class="lede" style="max-width:34ch">Breathe Fest is a 100% volunteer-run festival. Every hour put toward organizing and running it is given freely.</p>
+    </div>
+
+    <div class="tiles">
+      <a class="tile rv" href="#">
+        <span class="kicker">Teach</span>
+        <h3>Lead a workshop</h3>
+        <p>Movement, creativity, nature connection, personal growth, music, play, wellness, storytelling, skills, or conversation — if you feel called to share it, the weekend is built for it.</p>
+        <span class="tile__arw">Apply &rarr;</span>
+      </a>
+      <a class="tile rv" href="#">
+        <span class="kicker">Crew</span>
+        <h3>Volunteer</h3>
+        <p>Rigging, kitchen, activities, and the Peace Holders — the teams that hold the container. Join the people who make the whole thing exist.</p>
+        <span class="tile__arw">Join the team &rarr;</span>
+      </a>
+      <a class="tile rv" href="#">
+        <span class="kicker">Access</span>
+        <h3>Flow it Forward</h3>
+        <p>A limited number of full-event tickets for people facing financial barriers — with a request to carry that energy forward into your own community afterward.</p>
+        <span class="tile__arw">Apply &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- SIGNUP -->
+  <section class="signup" id="signup">
+    <div class="shell signup__grid">
+      <div class="rv">
+        <span class="kicker">Breathe 2027</span>
+        <h2 class="display">Stay close<br><em>to the fire.</em></h2>
+        <p>Dates, applications, and ticket sales. One letter each time there's something real to tell you, and nothing in between.</p>
+      </div>
+      <form class="rv" onsubmit="event.preventDefault();this.querySelector('button').textContent='You&#39;re on the list ✓'">
+        <label for="em-c">Email address</label>
+        <input id="em-c" type="email" placeholder="you@example.com" required>
+        <button type="submit">Sign up</button>
+        <p class="fineprint">A handful of emails a year. Unsubscribe any time.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="foot__grid">
+      <div>
+        <p class="foot__mark">Breathe</p>
+        <p>Discover your purpose. Awaken our world. A transformative gathering at Deerfields in Horse Shoe, North Carolina.</p>
+      </div>
+      <div class="foot">
+        <h4>Festival</h4>
+        <ul>
+          <li><a href="#">The experience</a></li>
+          <li><a href="#">Schedule</a></li>
+          <li><a href="#">Tickets</a></li>
+          <li><a href="#">Plan your visit</a></li>
+        </ul>
+      </div>
+      <div class="foot">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="#">Teach or perform</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Flow it Forward</a></li>
+          <li><a href="#">Code of conduct</a></li>
+        </ul>
+      </div>
+      <div class="foot">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">hello@discoverbreathe.com</a></li>
+          <li><a href="#">Donate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>&copy; BREATHE &mdash; Brought to you by the CSA &amp; RMS</span>
+      <span>Deerfields &middot; 101 Watagnee Trail, Horse Shoe, NC 28742</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const bar = document.getElementById('bar');
+  const onScroll = () => bar.classList.toggle('solid', window.scrollY > 40);
+  onScroll();
+  addEventListener('scroll', onScroll, {passive:true});
+
+  const io = new IntersectionObserver(es => es.forEach((e,i) => {
+    if(e.isIntersecting){
+      e.target.style.transitionDelay = (i*80)+'ms';
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  }), {threshold:.1, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

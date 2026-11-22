@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BREATHE — Option B · Field Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f1ede3;
+    --paper-2:#e7e1d3;
+    --ink:#0e1618;
+    --blue:#5b899b;           /* decorative */
+    --blue-ink:#3d6474;       /* blue as TEXT (5.5:1 on paper) */
+    --blue-deep:#1e2d33;
+    --flare:#e39856;          /* decorative fill only */
+    --flare-ink:#9c5514;      /* flare as TEXT on paper (4.8:1) */
+    --flare-bright:#f0a468;   /* flare as TEXT on dark */
+    --line:rgba(14,22,24,.16);
+    --line-hi:rgba(14,22,24,.42);
+
+    --f-disp:"Archivo",system-ui,sans-serif;
+    --f-mono:"JetBrains Mono",ui-monospace,monospace;
+
+    --pad:clamp(1.1rem,3.2vw,3.2rem);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--f-disp);
+    font-size:clamp(.98rem,.95rem + .18vw,1.06rem);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* paper texture */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23p)' opacity='.16'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+
+  .shell{max-width:1440px;margin-inline:auto;padding-inline:var(--pad)}
+  .mono{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:400;overflow-wrap:anywhere}
+
+  /* ---------- top bar ---------- */
+  .bar{
+    position:sticky;top:0;z-index:100;
+    background:rgba(241,237,227,.86);
+    backdrop-filter:blur(14px) saturate(1.2);
+    border-bottom:1.5px solid var(--ink);
+  }
+  .bar__in{
+    display:flex;align-items:stretch;justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:.6rem;
+    font-weight:800;font-size:1.02rem;letter-spacing:-.03em;
+    text-decoration:none;padding-right:1.6rem;border-right:1.5px solid var(--ink);
+  }
+  .brand__dot{
+    width:11px;height:11px;border-radius:50%;background:var(--flare);
+    box-shadow:0 0 0 3px rgba(227,152,86,.28);
+  }
+  .bar nav{display:flex;align-items:center;margin-left:auto}
+  .bar nav a{
+    text-decoration:none;font-size:.82rem;font-weight:500;
+    padding:0 1.15rem;height:64px;display:flex;align-items:center;
+    border-left:1.5px solid var(--line);
+    transition:background .18s,color .18s;
+    letter-spacing:-.005em;
+  }
+  .bar nav a:hover{background:var(--ink);color:var(--paper)}
+  .bar__cta{
+    display:flex;align-items:center;gap:.5rem;
+    background:var(--ink);color:var(--paper);
+    padding:0 1.5rem;font-size:.8rem;font-weight:600;
+    text-decoration:none;border:0;transition:background .2s;
+  }
+  .bar__cta:hover{background:var(--blue-deep)}
+  .bar__cta span{font-family:var(--f-mono);font-size:.7rem}
+
+  /* ---------- hero ---------- */
+  .hero{padding-block:clamp(1.6rem,3vw,2.6rem) 0}
+  .hero__top{
+    display:grid;grid-template-columns:1fr auto;align-items:end;
+    gap:2rem;border-bottom:1.5px solid var(--ink);padding-bottom:1rem;
+  }
+  .hero__status{display:flex;align-items:center;gap:.55rem}
+  .blink{
+    width:7px;height:7px;border-radius:50%;background:var(--flare);
+    animation:blink 2.4s ease-in-out infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+  h1{
+    font-weight:800;
+    font-size:clamp(2.9rem,11.4vw,10.5rem);
+    line-height:.84;
+    letter-spacing:-.055em;
+    margin:clamp(1.4rem,3vw,2.4rem) 0 0;
+    text-transform:uppercase;
+  }
+  h1 .thin{font-weight:200}
+  h1 .stroke{
+    /* outlined-but-filled: keeps the graphic weight while staying readable
+       (filled with --blue-ink = 5.5:1 on paper; stroke adds the cut) */
+    -webkit-text-stroke:2px var(--ink);
+    color:var(--blue-ink);
+  }
+  h1 .flare{color:var(--flare-ink)}
+
+  .hero__grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:1.5rem;
+    margin-top:clamp(1.6rem,3vw,2.4rem);
+  }
+  .hero__blurb{
+    grid-column:span 5;
+    font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.55;
+    letter-spacing:-.012em;margin:0;
+  }
+  .hero__blurb strong{font-weight:700;background:linear-gradient(transparent 62%,rgba(227,152,86,.45) 62%)}
+  .hero__spec{
+    grid-column:span 4;
+    display:grid;gap:0;align-content:start;
+    border-top:1.5px solid var(--line-hi);
+  }
+  .hero__spec div{
+    display:flex;justify-content:space-between;gap:1rem;
+    padding:.6rem 0;border-bottom:1.5px solid var(--line);
+    font-size:.86rem;
+  }
+  .hero__spec dt{color:rgba(14,22,24,.66)}
+  .hero__spec dd{margin:0;font-weight:600}
+  .hero__actions{
+    grid-column:span 3;display:flex;flex-direction:column;gap:.6rem;
+  }
+  .btn{
+    display:flex;align-items:center;justify-content:space-between;gap:.8rem;
+    padding:.95rem 1.15rem;text-decoration:none;
+    font-size:.82rem;font-weight:600;letter-spacing:-.005em;
+    border:1.5px solid var(--ink);
+    transition:transform .16s,background .2s,color .2s,box-shadow .16s;
+    background:transparent;
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--ink)}
+  .btn--fill{background:var(--ink);color:var(--paper)}
+  .btn--flare{background:var(--flare);border-color:var(--ink);color:var(--ink)}
+  .btn .arw{font-family:var(--f-mono);font-size:.85rem}
+
+  /* ---------- marquee ---------- */
+  .ticker{
+    margin-top:clamp(1.8rem,3.5vw,2.8rem);
+    border-block:1.5px solid var(--ink);
+    background:var(--ink);color:var(--paper);
+    overflow:hidden;display:flex;
+  }
+  .ticker__row{
+    display:flex;flex:0 0 auto;align-items:center;
+    animation:marq 38s linear infinite;
+    padding-block:.55rem;
+  }
+  .ticker__row span{
+    font-family:var(--f-mono);font-size:.72rem;letter-spacing:.16em;
+    text-transform:uppercase;padding-inline:1.4rem;white-space:nowrap;
+    display:flex;align-items:center;gap:1.4rem;
+  }
+  .ticker__row span::after{content:"✳";color:var(--flare);font-size:.8rem}
+  @keyframes marq{to{transform:translateX(-100%)}}
+
+  /* ---------- hero image ---------- */
+  .hero__media{
+    position:relative;margin-top:clamp(1.6rem,3vw,2.4rem);
+    border:1.5px solid var(--ink);
+    overflow:hidden;
+    aspect-ratio:21/8;
+    background:var(--paper-2);
+  }
+  .hero__media img{width:100%;height:100%;object-fit:cover;filter:contrast(1.06) saturate(.92)}
+  .hero__media::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(105deg,rgba(30,45,51,.42),transparent 55%);
+  }
+  .hero__stamp{
+    position:absolute;left:1.1rem;bottom:1.1rem;z-index:2;
+    background:var(--flare);color:var(--ink);
+    border:1.5px solid var(--ink);
+    padding:.55rem .9rem;
+    font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    transform:rotate(-1.6deg);
+  }
+
+  /* ---------- numbered sections ---------- */
+  .sec{padding-block:clamp(3rem,7vw,6rem)}
+  .sec__head{
+    display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;
+    gap:1.2rem;border-top:1.5px solid var(--ink);padding-top:.9rem;
+  }
+  .sec__head h2{
+    font-weight:800;font-size:clamp(1.7rem,4vw,3.1rem);
+    letter-spacing:-.04em;line-height:.95;margin:0;text-transform:uppercase;
+  }
+  .sec__head h2 em{font-style:normal;color:var(--blue-ink)}
+  .sec__idx{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.16em;color:rgba(14,22,24,.62)}
+
+  /* three-up cards */
+  .cards{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:0;margin-top:2rem;border:1.5px solid var(--ink);
+    border-right:0;border-bottom:0;
+  }
+  .card{
+    padding:1.6rem 1.4rem 1.8rem;border-right:1.5px solid var(--ink);
+    border-bottom:1.5px solid var(--ink);
+    position:relative;transition:background .25s;
+  }
+  .card:hover{background:var(--paper-2)}
+  .card__n{
+    font-family:var(--f-mono);font-size:.7rem;letter-spacing:.16em;
+    color:var(--blue-ink);display:block;margin-bottom:1.6rem;
+  }
+  .card h3{
+    font-weight:700;font-size:1.32rem;letter-spacing:-.025em;margin:0 0 .6rem;
+  }
+  .card p{margin:0;font-size:.89rem;line-height:1.58;color:rgba(14,22,24,.78)}
+  .card__icon{
+    position:absolute;top:1.3rem;right:1.3rem;
+    width:26px;height:26px;border:1.5px solid var(--ink);border-radius:50%;
+    display:grid;place-items:center;font-size:.7rem;
+  }
+
+  /* ---------- experience list ---------- */
+  .exp{display:grid;grid-template-columns:1fr;margin-top:1.6rem}
+  .exp__row{
+    display:grid;grid-template-columns:60px minmax(0,1.1fr) minmax(0,1.4fr) auto;
+    align-items:center;gap:1.5rem;
+    padding:1.35rem 0;border-bottom:1.5px solid var(--line);
+    text-decoration:none;transition:padding-left .25s,background .25s;
+  }
+  .exp__row:hover{padding-left:.8rem;background:linear-gradient(90deg,rgba(227,152,86,.16),transparent 70%)}
+  .exp__num{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;color:rgba(14,22,24,.6)}
+  .exp__row h3{margin:0;font-size:clamp(1.05rem,1.9vw,1.5rem);letter-spacing:-.025em;font-weight:700}
+  .exp__row p{margin:0;font-size:.87rem;color:rgba(14,22,24,.66);line-height:1.5}
+  .exp__go{font-family:var(--f-mono);font-size:.9rem;transition:transform .25s}
+  .exp__row:hover .exp__go{transform:translateX(4px)}
+
+  /* ---------- split feature ---------- */
+  .split{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border:1.5px solid var(--ink);margin-top:2rem;
+  }
+  .split__img{position:relative;min-height:clamp(280px,42vw,520px);overflow:hidden}
+  .split__img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:saturate(.94)}
+  .split__txt{padding:clamp(1.6rem,3.4vw,3rem);display:flex;flex-direction:column;justify-content:center;background:var(--blue-deep);color:var(--paper)}
+  .split__txt .mono{color:var(--flare)}
+  .split__txt h2{
+    font-size:clamp(1.6rem,3.4vw,2.7rem);font-weight:800;letter-spacing:-.04em;
+    line-height:.98;margin:.9rem 0 1.1rem;text-transform:uppercase;
+  }
+  .split__txt p{margin:0 0 1rem;font-size:.93rem;color:rgba(241,237,227,.78);line-height:1.6}
+
+  /* ---------- badges ---------- */
+  .badges{
+    display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem;
+  }
+  .badge{
+    font-family:var(--f-mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;
+    padding:.4rem .75rem;border:1.5px solid rgba(241,237,227,.34);border-radius:999px;
+    color:rgba(241,237,227,.86);
+  }
+
+  /* ---------- big CTA ---------- */
+  .cta{
+    border:1.5px solid var(--ink);margin-top:clamp(2rem,4vw,3.4rem);
+    display:grid;grid-template-columns:1.2fr 1fr;
+  }
+  .cta__left{padding:clamp(1.8rem,4vw,3.4rem);border-right:1.5px solid var(--ink)}
+  .cta__left h2{
+    font-size:clamp(1.9rem,5vw,4rem);font-weight:800;line-height:.9;
+    letter-spacing:-.05em;text-transform:uppercase;margin:.6rem 0 1rem;
+  }
+  .cta__left p{margin:0;max-width:36ch;color:rgba(14,22,24,.7)}
+  .cta__right{
+    padding:clamp(1.8rem,4vw,3.4rem);background:var(--flare);
+    display:flex;flex-direction:column;justify-content:center;gap:1rem;
+  }
+  .cta__right label{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+  .cta__right input{
+    width:100%;padding:.9rem 1rem;border:1.5px solid var(--ink);
+    background:rgba(255,255,255,.5);font-family:var(--f-disp);font-size:.95rem;
+  }
+  .cta__right input:focus{outline:2px solid var(--ink);outline-offset:2px}
+  .cta__right button{
+    padding:.95rem;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);
+    font-family:var(--f-disp);font-size:.82rem;font-weight:600;letter-spacing:.02em;
+    cursor:pointer;transition:transform .16s,box-shadow .16s;
+  }
+  .cta__right button:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 rgba(14,22,24,.6)}
+  .cta__note{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;opacity:.92}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1.5px solid var(--ink);margin-top:clamp(3rem,6vw,5rem);background:var(--paper-2)}
+  .foot{
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:2rem;padding-block:clamp(2rem,4vw,3rem);
+  }
+  .foot h4{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;margin:0 0 .9rem;color:rgba(14,22,24,.62)}
+  .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.45rem;font-size:.86rem}
+  .foot ul a{text-decoration:none;transition:color .2s}
+  .foot ul a:hover{color:var(--blue)}
+  .foot__logo{
+    font-weight:800;font-size:1.6rem;letter-spacing:-.04em;text-transform:uppercase;
+    line-height:.9;margin:0 0 .8rem;
+  }
+  .foot__logo span{color:var(--flare-ink)}
+  .foot__bottom{
+    border-top:1.5px solid var(--line);
+    padding-block:1rem;display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;
+  }
+
+  .rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+
+  @media(max-width:1040px){
+    .hero__blurb{grid-column:span 7}
+    .hero__spec{grid-column:span 5}
+    .hero__actions{grid-column:span 12;flex-direction:row}
+    .hero__actions .btn{flex:1}
+    .cards{grid-template-columns:1fr}
+    .split{grid-template-columns:1fr}
+    .cta{grid-template-columns:1fr}
+    .cta__left{border-right:0;border-bottom:1.5px solid var(--ink)}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:860px){
+    .bar nav{display:none}
+    .hero__grid{grid-template-columns:1fr;gap:1.1rem}
+    .hero__blurb,.hero__spec,.hero__actions{grid-column:1 / -1}
+    .hero__actions{flex-direction:column}
+    .hero__spec div{flex-wrap:wrap;gap:.3rem}
+    .hero__top{grid-template-columns:1fr;gap:.5rem;align-items:start}
+    .bar__in{gap:.4rem}
+    .brand{padding-right:.9rem;font-size:.95rem}
+    .bar__cta{padding:0 1rem;font-size:.74rem}
+    .hero__media{aspect-ratio:3/2}
+    .exp__row{grid-template-columns:44px 1fr;row-gap:.5rem}
+    .exp__row p{grid-column:2}
+    .exp__go{grid-column:2;justify-self:start}
+    .hero__media{aspect-ratio:4/3}
+  }
+
+  /* ---- keyboard focus (visible on both light + dark) ---- */
+  :focus-visible{
+    outline:3px solid #3d6474;
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #3d6474;outline-offset:3px}
+
+  /* ---- respect reduced motion ---- */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+      scroll-behavior:auto !important;
+    }
+    .rv{opacity:1 !important;transform:none !important}
+    .hero__photo,.hero__bg,.hero__media img{animation:none !important;transform:none !important}
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="shell bar__in">
+    <a class="brand" href="#"><i class="brand__dot"></i>BREATHE</a>
+    <nav aria-label="Main">
+      <a href="#experience">Experience</a>
+      <a href="#visit">Plan your visit</a>
+      <a href="#involved">Get involved</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="bar__cta" href="#">Tickets <span>↗</span></a>
+  </div>
+</div>
+
+<header class="shell hero">
+  <div class="hero__top">
+    <div class="hero__status mono"><i class="blink"></i>2027 &middot; dates announced soon</div>
+    <div class="mono" style="color:rgba(14,22,24,.62)">Deerfields &middot; Horse Shoe, NC</div>
+  </div>
+
+  <h1>
+    Discover<br>
+    <span class="thin">your</span> <span class="stroke">purpose</span><br>
+    <span class="flare">Awaken</span> our world
+  </h1>
+
+  <div class="hero__grid">
+    <p class="hero__blurb">
+      A community built on the belief that <strong>everyone has a higher purpose</strong>.
+      Through shared learning, physical practice, and genuine connection, we bring mind,
+      body, and spirit into alignment — in the mountains of North Carolina.
+    </p>
+
+    <dl class="hero__spec">
+      <div><dt>Gathering</dt><dd>Annual, since 2014</dd></div>
+      <div><dt>Run by</dt><dd>100% volunteers</dd></div>
+      <div><dt>Programming</dt><dd>Made by the community</dd></div>
+      <div><dt>Camping</dt><dd>Included with weekend pass</dd></div>
+    </dl>
+
+    <div class="hero__actions">
+      <a class="btn btn--fill" href="#">Join the newsletter <span class="arw">→</span></a>
+      <a class="btn btn--flare" href="#">Watch the film <span class="arw">→</span></a>
+      <a class="btn" href="#">Flow it Forward <span class="arw">→</span></a>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__row">
+      <span>Slacklining</span><span>Yoga</span><span>Drumming</span><span>Workshops</span>
+      <span>Music</span><span>Talk tent</span><span>Plant walks</span><span>Flow arts</span>
+      <span>Storytelling</span><span>Breathwork</span><span>Kids' village</span><span>Highlines</span>
+    </div>
+    <div class="ticker__row">
+      <span>Slacklining</span><span>Yoga</span><span>Drumming</span><span>Workshops</span>
+      <span>Music</span><span>Talk tent</span><span>Plant walks</span><span>Flow arts</span>
+      <span>Storytelling</span><span>Breathwork</span><span>Kids' village</span><span>Highlines</span>
+    </div>
+  </div>
+
+  <figure class="hero__media rv">
+    <img alt="Slacklines stretched high across the valley at Deerfields" loading="eager"
+         src="https://static.wixstatic.com/media/9f397e_1648d2b1c7594386b39c4bc0e620af64~mv2.jpeg/v1/fill/w_2000,h_800,al_c,q_82/file.jpg">
+    <figcaption class="hero__stamp">Est. 2014 &middot; Western NC</figcaption>
+  </figure>
+</header>
+
+<main class="shell">
+
+  <!-- ABOUT -->
+  <section class="sec" id="about">
+    <div class="sec__head rv">
+      <span class="sec__idx">01</span>
+      <h2>Not built for you.<br><em>Built with you.</em></h2>
+      <span class="mono" style="color:rgba(14,22,24,.62)">Our mission</span>
+    </div>
+
+    <div class="cards rv">
+      <article class="card">
+        <span class="card__n">Community</span>
+        <span class="card__icon">✳</span>
+        <h3>Belonging, by default</h3>
+        <p>We foster an environment filled with belonging, compassion, and love — dissolving the barriers between the seen and unseen to reveal a community that is whole, inter-connected, and free.</p>
+      </article>
+      <article class="card">
+        <span class="card__n">The Jelly</span>
+        <span class="card__icon">✳</span>
+        <h3>Mind, body, spirit</h3>
+        <p>Three things that only make sense together. Movement primes the body. Teaching sharpens the mind. Giving without expectation is what actually connects us.</p>
+      </article>
+      <article class="card">
+        <span class="card__n">The weekend</span>
+        <span class="card__icon">✳</span>
+        <h3>Live simply, together</h3>
+        <p>Primitive camping, well water, outdoor showers, a shared meal-prep tent, and no vendors. Self-sufficient by design, so the weekend belongs to the people in it.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="sec" id="experience">
+    <div class="sec__head rv">
+      <span class="sec__idx">02</span>
+      <h2>The <em>experience</em></h2>
+      <span class="mono" style="color:rgba(14,22,24,.62)">Six ways in</span>
+    </div>
+
+    <div class="exp">
+      <a class="exp__row rv" href="#">
+        <span class="exp__num">1.1</span>
+        <h3>Slacklining &amp; highlines</h3>
+        <p>Parks, waterlines, and long highlines strung through the trees — from first steps to the 1km record line.</p>
+        <span class="exp__go">↗</span>
+      </a>
+      <a class="exp__row rv" href="#">
+        <span class="exp__num">1.2</span>
+        <h3>Yoga &amp; movement</h3>
+        <p>Daily practices on the land, from restorative flow to strength work. All levels, all bodies.</p>
+        <span class="exp__go">↗</span>
+      </a>
+      <a class="exp__row rv" href="#">
+        <span class="exp__num">1.3</span>
+        <h3>Drumming &amp; music</h3>
+        <p>DRUMeditation, community rhythm circles, and live sets from musicians in the community.</p>
+        <span class="exp__go">↗</span>
+      </a>
+      <a class="exp__row rv" href="#">
+        <span class="exp__num">1.4</span>
+        <h3>Workshops &amp; talks</h3>
+        <p>Plant walks, philosophy, breathwork, creative arts, skills, and the Condor Talk Tent.</p>
+        <span class="exp__go">↗</span>
+      </a>
+      <a class="exp__row rv" href="#">
+        <span class="exp__num">1.5</span>
+        <h3>Kids &amp; families</h3>
+        <p>Children's activities through the weekend. Kids 12 and under come free.</p>
+        <span class="exp__go">↗</span>
+      </a>
+      <a class="exp__row rv" href="#">
+        <span class="exp__num">1.6</span>
+        <h3>The land itself</h3>
+        <p>Ponds, forests, and trails at Deerfields. Leave no trace, and leave it better.</p>
+        <span class="exp__go">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- VENUE SPLIT -->
+  <section class="sec" id="visit">
+    <div class="split rv">
+      <div class="split__img">
+        <img alt="The Balance Community Pond at Deerfields" loading="lazy"
+             src="https://static.wixstatic.com/media/9f397e_359f95435e39481992a129b5c2f6d688~mv2.jpg/v1/fill/w_1000,h_1100,al_c,q_82/file.jpg">
+      </div>
+      <div class="split__txt">
+        <p class="mono">Plan your visit</p>
+        <h2>Deerfields.<br>Horse Shoe, NC.</h2>
+        <p>Twenty minutes south of Asheville, and twenty from the airport. Primitive camping in Elysian Fields and Valhalla, free potable well water, outdoor showers, and ice for sale on site.</p>
+        <p>There are no food vendors. Bring and prepare your own meals — or cook alongside everyone else at the Community Meal Prep Tent, with shared stoves, tables, and basic utensils.</p>
+        <div class="badges">
+          <span class="badge">Camping included</span>
+          <span class="badge">Free parking</span>
+          <span class="badge">Van &amp; RV spots</span>
+          <span class="badge">Potable water</span>
+          <span class="badge">Outdoor showers</span>
+          <span class="badge">No vendors</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET INVOLVED -->
+  <section class="sec" id="involved">
+    <div class="sec__head rv">
+      <span class="sec__idx">03</span>
+      <h2>Get <em>involved</em></h2>
+      <span class="mono" style="color:rgba(14,22,24,.62)">Everyone contributes</span>
+    </div>
+
+    <div class="cards rv">
+      <article class="card">
+        <span class="card__n">Teach</span>
+        <h3>Lead a workshop</h3>
+        <p>Have something you're passionate about? The programming is the community. Submit a workshop, class, performance, or talk.</p>
+      </article>
+      <article class="card">
+        <span class="card__n">Crew</span>
+        <h3>Volunteer</h3>
+        <p>Breathe is 100% volunteer run. Rigging, kitchen, activities, and the Peace Holders — every hour is given freely.</p>
+      </article>
+      <article class="card">
+        <span class="card__n">Access</span>
+        <h3>Flow it Forward</h3>
+        <p>A limited number of full-event tickets for people facing financial barriers — with a request to carry it forward into your own community.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta rv">
+    <div class="cta__left">
+      <p class="mono" style="color:rgba(14,22,24,.62)">Stay in the loop</p>
+      <h2>Breathe<br>2027</h2>
+      <p>One letter when dates are confirmed, applications open, and tickets go live. Nothing else.</p>
+    </div>
+    <div class="cta__right">
+      <form onsubmit="event.preventDefault();this.querySelector('button').textContent='SIGNED UP ✓'">
+        <label for="eb">Email address</label>
+        <input id="eb" type="email" placeholder="you@example.com" required style="margin-bottom:.7rem">
+        <button type="submit">Sign up</button>
+        <p class="cta__note" style="margin:.8rem 0 0">A handful of emails a year. Unsubscribe any time.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell foot">
+    <div>
+      <p class="foot__logo">Breathe<span>.</span></p>
+      <p style="margin:0;font-size:.86rem;max-width:26ch;color:rgba(14,22,24,.78)">Discover your purpose. Awaken our world. A transformative gathering at Deerfields in Horse Shoe, North Carolina.</p>
+    </div>
+    <div>
+      <h4>Festival</h4>
+      <ul>
+        <li><a href="#">The experience</a></li>
+        <li><a href="#">Schedule</a></li>
+        <li><a href="#">Tickets</a></li>
+        <li><a href="#">The venue</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Community</h4>
+      <ul>
+        <li><a href="#">Teach or perform</a></li>
+        <li><a href="#">Volunteer</a></li>
+        <li><a href="#">Flow it Forward</a></li>
+        <li><a href="#">Code of conduct</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">hello@discoverbreathe.com</a></li>
+        <li><a href="#">Newsletter</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="shell foot__bottom mono" style="color:rgba(14,22,24,.62)">
+    <span>© BREATHE · Brought to you by the CSA &amp; RMS</span>
+    <span>Horse Shoe, NC · 35.45°N 82.58°W</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach((e,i) => {
+    if(e.isIntersecting){ e.target.style.transitionDelay = (i*70)+'ms'; e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.1, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
