@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BREATHE — Colour Schemes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;800;900&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FCF8ED;--ink:#1E2D33;--line:rgba(30,45,51,.2);--muted:rgba(30,45,51,.68)}
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Inter Tight",system-ui,sans-serif;line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin-inline:auto;padding:clamp(1.6rem,4vw,4rem) clamp(1.1rem,3.5vw,2.5rem) 5rem}
+  header{border-bottom:2px solid var(--ink);padding-bottom:1.6rem;margin-bottom:clamp(2rem,4vw,3rem)}
+  .eyebrow{font-size:.65rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  h1{
+    font-family:"Schibsted Grotesk",sans-serif;font-weight:900;
+    font-size:clamp(2rem,5.4vw,3.5rem);line-height:.96;letter-spacing:-.04em;
+    margin:.6rem 0 1rem;
+  }
+  header p{margin:0;max-width:62ch;color:var(--muted);font-size:.97rem}
+  .fam{
+    margin:1.5rem 0 0;padding:1rem 1.2rem;border:1px solid var(--line);
+    background:#fff;font-size:.86rem;color:var(--muted);
+  }
+  .fam b{color:var(--ink);font-weight:600}
+  .cards{display:grid;gap:clamp(1rem,2.4vw,1.6rem)}
+  .card{
+    border:2px solid var(--ink);background:#fff;text-decoration:none;color:inherit;
+    display:grid;grid-template-columns:1fr auto;gap:1.4rem;
+    padding:clamp(1.2rem,2.6vw,1.9rem);transition:transform .2s,box-shadow .2s;
+  }
+  .card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+  .meta{display:flex;gap:.5rem;align-items:center;margin-bottom:.7rem;flex-wrap:wrap}
+  .tag{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:.24rem .55rem;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+  .card h2{
+    font-family:"Schibsted Grotesk",sans-serif;font-weight:900;font-size:clamp(1.3rem,3vw,1.9rem);
+    letter-spacing:-.035em;margin:0 0 .5rem;line-height:1.05;
+  }
+  .card p{margin:0 0 1rem;color:var(--muted);font-size:.91rem;max-width:60ch}
+  .ramp{display:flex;gap:0;margin-bottom:.8rem;border:1px solid var(--line)}
+  .ramp i{height:34px;flex:1;display:block}
+  .navdemo{display:flex;align-items:center;gap:.9rem;padding:.55rem .85rem;border-radius:6px;margin-bottom:.8rem;font-size:.74rem;font-weight:600}
+  .navdemo span:first-child{letter-spacing:.28em;text-transform:uppercase;font-weight:900;font-family:"Schibsted Grotesk",sans-serif;font-size:.78rem}
+  .navdemo em{font-style:normal;margin-left:auto;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .6rem;border-radius:999px;font-weight:700}
+  .go{align-self:center;white-space:nowrap;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:.15rem}
+  .note{margin-top:clamp(2.2rem,4vw,3.2rem);border-top:1px solid var(--line);padding-top:1.6rem;color:var(--muted);font-size:.9rem}
+  .note h3{font-family:"Schibsted Grotesk",sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0 0 .8rem}
+  .note ul{margin:0;padding-left:1.15rem;display:grid;gap:.45rem}
+  code{font-family:ui-monospace,monospace;font-size:.85em;background:rgba(30,45,51,.07);padding:.1em .35em}
+  @media(max-width:720px){.card{grid-template-columns:1fr}.go{justify-self:start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">BREATHE &middot; Colour schemes</p>
+    <h1>Three schemes,<br>all yours</h1>
+    <p>
+      Same layout, same content, three colour systems — each built from a family that is
+      <b>already on discoverbreathe.com</b>. The top bar is now an opaque colour block in every
+      scheme, so it can never disappear into the photograph behind it.
+    </p>
+    <div class="fam">
+      <b>Pulled live from the current site.</b> It has four full ramps, not one:
+      Blue <code>#BFD5DD → #1E2D33</code> &middot; Sand <code>#F6DBC3 → #4C331D</code> &middot;
+      Teal <code>#B7D3D9 → #192B2F</code> &middot; Grey-green <code>#D4D8D2 → #5D6358</code>.
+      Page backgrounds are cream <code>#FCF8ED</code> and warm white <code>#F7F0E8</code>.
+    </div>
+  </header>
+
+  <div class="cards">
+    <a class="card" href="scheme-1-river.html">
+      <div>
+        <div class="meta"><span class="tag">Scheme 1</span><span class="tag">Cool &middot; Grounded</span></div>
+        <h2>River</h2>
+        <p>
+          The teal family. Deep slate-teal nav and footer with a pale teal accent — reads calm,
+          outdoorsy, and a little more grown-up than the current site. The coolest of the three
+          and the one that feels most like water and forest.
+        </p>
+        <div class="ramp">
+          <i style="background:#B7D3D9"></i><i style="background:#89ABB4"></i>
+          <i style="background:#4A818E"></i><i style="background:#31565F"></i><i style="background:#192B2F"></i>
+        </div>
+        <div class="navdemo" style="background:#31565F;color:#FCF8ED">
+          <span>Breathe</span><span style="opacity:.85">Experience</span><span style="opacity:.85">Visit</span>
+          <em style="background:#B7D3D9;color:#192B2F">Get updates</em>
+        </div>
+      </div>
+      <span class="go">Open &rarr;</span>
+    </a>
+
+    <a class="card" href="scheme-2-clay.html">
+      <div>
+        <div class="meta"><span class="tag">Scheme 2</span><span class="tag">Warm &middot; Earthy</span></div>
+        <h2>Clay</h2>
+        <p>
+          The sand family. Deep brown nav and footer with warm amber and pale sand. The warmest
+          and most human of the three — closest in spirit to the original site's amber, but with
+          the muddy <code>#a8501c</code> replaced by the real sand ramp.
+        </p>
+        <div class="ramp">
+          <i style="background:#F6DBC3"></i><i style="background:#ECC5A3"></i>
+          <i style="background:#E39856"></i><i style="background:#976539"></i><i style="background:#4C331D"></i>
+        </div>
+        <div class="navdemo" style="background:#4C331D;color:#F6DBC3">
+          <span>Breathe</span><span style="opacity:.85">Experience</span><span style="opacity:.85">Visit</span>
+          <em style="background:#F6DBC3;color:#4C331D">Get updates</em>
+        </div>
+      </div>
+      <span class="go">Open &rarr;</span>
+    </a>
+
+    <a class="card" href="scheme-3-sky.html">
+      <div>
+        <div class="meta"><span class="tag">Scheme 3</span><span class="tag">Light &middot; Airy</span></div>
+        <h2>Sky</h2>
+        <p>
+          The blue family, and the lightest of the three. Pale blue nav with ink type on it, so
+          the whole header stays bright and open. The closest to what the current site looks like
+          today, but considerably more refined.
+        </p>
+        <div class="ramp">
+          <i style="background:#BFD5DD"></i><i style="background:#96B1BC"></i>
+          <i style="background:#5B899B"></i><i style="background:#3D5B67"></i><i style="background:#1E2D33"></i>
+        </div>
+        <div class="navdemo" style="background:#BFD5DD;color:#1E2D33">
+          <span>Breathe</span><span style="opacity:.8">Experience</span><span style="opacity:.8">Visit</span>
+          <em style="background:#1E2D33;color:#BFD5DD">Get updates</em>
+        </div>
+      </div>
+      <span class="go">Open &rarr;</span>
+    </a>
+  </div>
+
+  <div class="note">
+    <h3>What changed from the last round</h3>
+    <ul>
+      <li><b>The top bar is opaque in all three.</b> It was translucent over the hero photo, which is why it vanished. Contrast is now guaranteed against a flat colour (6.3–8.9:1) rather than against whatever the photograph happens to be.</li>
+      <li><b><code>#a8501c</code> is gone.</b> That was a colour I invented, not one from your site. Every accent here is a real step from your own ramps.</li>
+      <li><b>Contrast re-verified on every text node</b> at 390 px and 1440 px: zero WCAG AA failures in all three.</li>
+      <li>One trade-off worth knowing: the mid-tone accents (<code>#4A818E</code>, <code>#5B899B</code>) are too light to carry a button label at 4.5:1, so the primary CTA uses the next deeper step. That's why the buttons look slightly darker than the decorative accent.</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
