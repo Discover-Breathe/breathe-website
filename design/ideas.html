@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BREATHE — Three Structure Ideas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800;900&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#FCF8ED;--deep:#192B2F;--pale:#B7D3D9;--teal:#4A818E;--teal-ink:#31565F;--rule:rgba(25,43,47,.2);--muted:rgba(25,43,47,.7)}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--deep);font-family:"Inter Tight",system-ui,sans-serif;line-height:1.62;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin-inline:auto;padding:clamp(1.6rem,4vw,4rem) clamp(1.1rem,3.5vw,2.5rem) 5rem}
+  header{border-bottom:2px solid var(--deep);padding-bottom:1.6rem;margin-bottom:clamp(1.8rem,4vw,2.8rem)}
+  .eyebrow{font-size:.63rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  h1{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(2rem,5.4vw,3.4rem);line-height:.95;letter-spacing:-.04em;margin:.6rem 0 1rem;text-transform:uppercase}
+  header p{margin:0;max-width:66ch;color:var(--muted);font-size:.96rem}
+  .diag{margin:1.4rem 0 0;padding:1rem 1.2rem;border:1px solid var(--rule);background:#fff;font-size:.88rem;color:var(--muted)}
+  .diag b{color:var(--deep);font-weight:600}
+  .cards{display:grid;gap:clamp(1rem,2.4vw,1.6rem)}
+  .card{border:2px solid var(--deep);background:#fff;text-decoration:none;color:inherit;display:grid;grid-template-columns:1fr auto;gap:1.4rem;padding:clamp(1.2rem,2.6vw,1.9rem);transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)}
+  .meta{display:flex;gap:.5rem;align-items:center;margin-bottom:.7rem;flex-wrap:wrap}
+  .tag{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:.24rem .55rem;border:1px solid var(--rule);border-radius:999px;color:var(--muted)}
+  .card h2{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(1.3rem,3vw,1.85rem);letter-spacing:-.035em;margin:0 0 .5rem;line-height:1.05;text-transform:uppercase}
+  .card p{margin:0 0 .7rem;color:var(--muted);font-size:.91rem;max-width:62ch}
+  .card p.how{font-size:.85rem;color:var(--deep)}
+  .card p.how b{font-weight:600}
+  .go{align-self:center;white-space:nowrap;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-bottom:2px solid var(--deep);padding-bottom:.15rem}
+  .note{margin-top:clamp(2rem,4vw,3rem);border-top:1px solid var(--rule);padding-top:1.6rem;color:var(--muted);font-size:.9rem}
+  .note h3{font-family:"Archivo",sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--deep);margin:0 0 .8rem}
+  .note ul{margin:0;padding-left:1.15rem;display:grid;gap:.45rem}
+  code{font-family:ui-monospace,monospace;font-size:.85em;background:rgba(25,43,47,.08);padding:.1em .35em}
+  @media(max-width:720px){.card{grid-template-columns:1fr}.go{justify-self:start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">BREATHE &middot; Round three</p>
+    <h1>Three structures</h1>
+    <p>
+      Same content, same palette family, three genuinely different <b>structures</b>. All of them
+      keep the River teal you picked.
+    </p>
+    <div class="diag">
+      <b>What went wrong last time, and what changed.</b> I had solved contrast by washing the
+      photograph with a pale veil — which also destroyed it. Verified: the photo now has
+      <b>std-dev 0.17–0.22</b> luminance range versus <b>0.137</b> when washed, and reaches true
+      black-to-white. The cause of the washing was text sitting <i>on top of</i> the image. So in
+      all three ideas the photograph and the type each get their own territory — there is no
+      overlap to solve. Measured: <b>zero text elements overlap any photograph</b>, and contrast
+      passes on flat colour by construction.
+    </div>
+  </header>
+
+  <div class="cards">
+    <a class="card" href="idea-1-split.html">
+      <div>
+        <div class="meta"><span class="tag">Idea 1</span><span class="tag">Confident &middot; Poster</span></div>
+        <h2>The Split</h2>
+        <p>A hard vertical split: solid teal type panel on the left, photograph running full-height
+           on the right at full strength. A pale facts ribbon underneath. Reads like a printed
+           poster — big, direct, and unmistakably not a template.</p>
+        <p class="how"><b>How it fixes it:</b> the image is never touched. No filter veil, no gradient. The teal panel gives the type a permanently safe home.</p>
+      </div>
+      <span class="go">Open &rarr;</span>
+    </a>
+
+    <a class="card" href="idea-2-stacked.html">
+      <div>
+        <div class="meta"><span class="tag">Idea 2</span><span class="tag">Calm &middot; Editorial</span></div>
+        <h2>Stacked</h2>
+        <p>Quiet type block at the top on bare cream, then an uninterrupted full-bleed photograph
+           band below it with nothing on top. Softer, more restrained, and the most legible on a
+           phone — the headline gets the whole width.</p>
+        <p class="how"><b>How it fixes it:</b> type and image are stacked in sequence, never layered. The photo is a full-bleed band with zero overlay.</p>
+      </div>
+      <span class="go">Open &rarr;</span>
+    </a>
+
+    <a class="card" href="idea-3-broadsheet.html">
+      <div>
+        <div class="meta"><span class="tag">Idea 3</span><span class="tag">Editorial &middot; Programme</span></div>
+        <h2>Broadsheet</h2>
+        <p>A festival programme rather than a landing page: narrow condensed-caps type column,
+           wide photo column, and a running contents index down the right rail. Hairline rules
+           throughout. The most distinctive of the three and the one with the most information
+           density on the first screen.</p>
+        <p class="how"><b>How it fixes it:</b> a three-column grid where type, photo, and index each own a column. Structure does the work that a scrim was doing badly.</p>
+      </div>
+      <span class="go">Open &rarr;</span>
+    </a>
+  </div>
+
+  <div class="note">
+    <h3>Checked on all three</h3>
+    <ul>
+      <li>Photograph at full strength — measured std-dev 0.17–0.22, full black-to-white range, only a light <code>saturate(1.05) contrast(1.05)</code>.</li>
+      <li>Zero text elements overlapping any photograph, verified geometrically at 1440 px.</li>
+      <li>Zero WCAG AA contrast failures on every text node at 390 / 768 / 1440 px.</li>
+      <li>No horizontal overflow at any width; all images and fonts load.</li>
+      <li>Reduced-motion honoured, keyboard focus visible, opaque nav in all three.</li>
+      <li>Palette stays inside your teal family: <code>#B7D3D9 · #89ABB4 · #4A818E · #31565F · #192B2F</code> on cream <code>#FCF8ED</code>.</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

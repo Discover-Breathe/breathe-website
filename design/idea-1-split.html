@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BREATHE — Idea 1 · The Split</title>
+<meta name="description" content="BREATHE is a community grounded in the belief that everyone has a higher purpose.">
+<meta name="theme-color" content="#31565F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ==========================================================
+     IDEA 1 — THE SPLIT
+     The photograph never sits under type. It gets a hard half of
+     the frame at full strength; the type gets a solid teal half.
+     Nothing is washed out, nothing is dimmed.
+     ========================================================== */
+  :root{
+    --cream:#FCF8ED;
+    --cream-2:#F5EFE1;
+    --pale:#B7D3D9;
+    --mid:#89ABB4;
+    --teal:#4A818E;
+    --teal-ink:#31565F;
+    --deep:#192B2F;
+    --line:rgba(25,43,47,.16);
+    --line-2:rgba(25,43,47,.3);
+    --f-disp:"Archivo",system-ui,sans-serif;
+    --f-body:"Inter Tight",system-ui,sans-serif;
+    --pad:clamp(1.15rem,3.6vw,3.5rem);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--cream);color:var(--deep);
+    font-family:var(--f-body);font-size:clamp(.98rem,.95rem + .18vw,1.06rem);
+    line-height:1.66;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  ::selection{background:var(--teal-ink);color:var(--cream)}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:100;background:var(--deep);color:var(--cream);
+    border-bottom:1px solid rgba(252,248,237,.14);
+  }
+  .nav__in{
+    display:flex;align-items:center;justify-content:space-between;
+    height:66px;gap:1.4rem;max-width:1600px;margin-inline:auto;padding-inline:var(--pad);
+  }
+  .logo{
+    font-family:var(--f-disp);font-weight:900;font-size:1rem;letter-spacing:.36em;
+    text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:.55rem;
+    font-stretch:110%;
+  }
+  .logo i{width:8px;height:8px;background:var(--mid);border-radius:50%;flex:0 0 auto}
+  .nav__links{display:flex;gap:1.9rem;font-size:.83rem;font-weight:400}
+  .nav__links a{text-decoration:none;color:rgba(252,248,237,.78);transition:color .2s}
+  .nav__links a:hover{color:var(--cream)}
+  .nav__cta{
+    font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    text-decoration:none;padding:.55rem 1.15rem;border:1px solid rgba(252,248,237,.4);
+    border-radius:999px;transition:background .25s,color .25s,border-color .25s;white-space:nowrap;
+  }
+  .nav__cta:hover{background:var(--pale);color:var(--deep);border-color:var(--pale)}
+
+  /* ---------- hero split ---------- */
+  .split{
+    display:grid;grid-template-columns:minmax(0,47fr) minmax(0,53fr);
+    min-height:calc(100svh - 66px);
+  }
+  .split__type{
+    background:var(--teal-ink);color:var(--cream);
+    padding:clamp(2.2rem,5vw,5.5rem) clamp(1.5rem,4vw,4.5rem);
+    display:flex;flex-direction:column;justify-content:center;position:relative;
+  }
+  .split__type::after{
+    content:"";position:absolute;right:0;top:0;bottom:0;width:1px;
+    background:rgba(252,248,237,.18);
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:.55rem;align-self:flex-start;
+    font-size:.63rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--pale);border:1px solid rgba(183,211,217,.42);border-radius:999px;
+    padding:.4rem .9rem .4rem .72rem;margin-bottom:clamp(1.4rem,3vw,2.4rem);
+  }
+  .badge i{width:6px;height:6px;border-radius:50%;background:var(--pale);animation:p 2.6s ease-in-out infinite}
+  @keyframes p{0%,100%{opacity:1}50%{opacity:.35}}
+  .split h1{
+    font-family:var(--f-disp);font-weight:900;font-stretch:88%;
+    font-size:clamp(2.5rem,5.6vw,5.4rem);line-height:.9;
+    letter-spacing:-.038em;margin:0;text-transform:uppercase;
+  }
+  .split h1 em{font-style:normal;color:var(--pale);display:block}
+  .split__sub{
+    margin:clamp(1.4rem,3vw,2.2rem) 0 0;max-width:38ch;
+    font-size:clamp(.96rem,1.15vw,1.06rem);line-height:1.66;color:rgba(252,248,237,.84);
+  }
+  .split__cta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:clamp(1.6rem,3.4vw,2.4rem)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+    padding:.8rem 1.5rem;border-radius:999px;font-size:.77rem;font-weight:600;
+    letter-spacing:.09em;text-transform:uppercase;text-decoration:none;
+    border:1px solid rgba(252,248,237,.4);color:var(--cream);
+    transition:background .24s,color .24s,border-color .24s;cursor:pointer;
+  }
+  .btn:hover{background:var(--cream);color:var(--teal-ink);border-color:var(--cream)}
+  .btn--solid{background:var(--pale);border-color:var(--pale);color:var(--deep)}
+  .btn--solid:hover{background:var(--cream);border-color:var(--cream);color:var(--teal-ink)}
+
+  .split__photo{position:relative;overflow:hidden;background:var(--deep)}
+  .split__photo img{
+    width:100%;height:100%;object-fit:cover;object-position:center;
+    /* NO wash, NO veil — full strength */
+    filter:saturate(1.04) contrast(1.04);
+  }
+  .photo-credit{
+    position:absolute;right:.9rem;bottom:.9rem;
+    font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+    color:rgba(252,248,237,.96);background:rgba(10,16,18,.72);
+    padding:.3rem .6rem;backdrop-filter:blur(4px);
+  }
+
+  /* ---------- facts ribbon ---------- */
+  .facts{background:var(--pale);border-top:1px solid var(--line-2)}
+  .facts__in{
+    max-width:1600px;margin-inline:auto;padding-inline:var(--pad);
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .fact{
+    padding:clamp(1.1rem,2.2vw,1.6rem) 1.2rem 1.1rem;
+    border-left:1px solid rgba(25,43,47,.2);
+  }
+  .fact:first-child{border-left:0;padding-left:0}
+  .fact dt{
+    font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--teal-ink);margin-bottom:.35rem;
+  }
+  .fact dd{margin:0;font-family:var(--f-disp);font-weight:700;font-size:clamp(.95rem,1.5vw,1.15rem);letter-spacing:-.015em}
+
+  /* ---------- sections ---------- */
+  .shell{max-width:1600px;margin-inline:auto;padding-inline:var(--pad)}
+  .sec{padding-block:clamp(3.6rem,8vw,7rem)}
+  .sec--dark{background:var(--deep);color:var(--cream)}
+  .sec--sand{background:var(--cream-2)}
+
+  .eyebrow{
+    font-size:.63rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--teal-ink);display:inline-flex;align-items:center;gap:.55rem;
+  }
+  .eyebrow::before{content:"";width:18px;height:1.5px;background:currentColor}
+  .sec--dark .eyebrow{color:var(--pale)}
+  h2.d{
+    font-family:var(--f-disp);font-weight:900;font-stretch:90%;
+    font-size:clamp(1.9rem,4.4vw,3.7rem);line-height:.98;
+    letter-spacing:-.035em;margin:0;text-transform:uppercase;text-wrap:balance;
+  }
+  h2.d em{font-style:normal;color:var(--teal-ink)}
+  .sec--dark h2.d em{color:var(--mid)}
+
+  /* editorial two-col */
+  .ed{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:clamp(1.8rem,5vw,5rem);align-items:start}
+  .ed__body p{margin:0 0 1.35rem;color:rgba(25,43,47,.84);line-height:1.74}
+  .ed__body p:first-child{font-size:clamp(1.06rem,1.5vw,1.28rem);line-height:1.55;color:var(--deep);font-weight:500}
+  .quote{
+    margin:2.2rem 0;padding:1.5rem 0 1.5rem 1.4rem;border-left:3px solid var(--teal);
+    font-family:var(--f-disp);font-weight:700;font-stretch:92%;
+    font-size:clamp(1.15rem,2.2vw,1.6rem);line-height:1.28;letter-spacing:-.022em;
+  }
+
+  /* pillars: 3 columns with big numerals */
+  .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:clamp(2rem,4vw,3rem);border-top:1px solid rgba(252,248,237,.2)}
+  .tri > div{padding:clamp(1.4rem,3vw,2.4rem) clamp(1rem,2.2vw,2rem) 0;border-left:1px solid rgba(252,248,237,.14)}
+  .tri > div:first-child{border-left:0;padding-left:0}
+  .tri__n{
+    font-family:var(--f-disp);font-weight:900;font-stretch:75%;
+    font-size:clamp(2.2rem,5vw,4rem);line-height:.8;color:var(--teal);
+    display:block;margin-bottom:1rem;
+  }
+  .tri h3{
+    font-family:var(--f-disp);font-weight:800;font-stretch:92%;
+    font-size:clamp(1.1rem,1.9vw,1.45rem);margin:0 0 .6rem;letter-spacing:-.02em;text-transform:uppercase;
+  }
+  .tri p{margin:0;font-size:.93rem;line-height:1.66;color:rgba(252,248,237,.8)}
+
+  /* full-strength photo band, no text on it */
+  .band{position:relative;height:clamp(300px,58vh,600px);overflow:hidden}
+  .band img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.05)}
+
+  /* split feature: photo | type */
+  .feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:clamp(360px,52vw,560px)}
+  .feat__img{position:relative;overflow:hidden}
+  .feat__img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:saturate(1.04) contrast(1.04)}
+  .feat__txt{
+    background:var(--cream-2);padding:clamp(1.8rem,4vw,4rem);
+    display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--line-2);
+  }
+  .feat__txt p{margin:0 0 1.05rem;color:rgba(25,43,47,.84);line-height:1.7}
+  .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.4rem}
+  .tags span{
+    font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    padding:.38rem .7rem;border:1px solid rgba(25,43,47,.24);border-radius:999px;
+  }
+
+  /* involved rows */
+  .rows{margin-top:clamp(1.6rem,3vw,2.4rem);border-top:1px solid var(--line-2)}
+  .row{
+    display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr) auto;
+    gap:clamp(1rem,3vw,2.5rem);align-items:baseline;
+    padding-block:clamp(1.2rem,2.6vw,1.9rem);border-bottom:1px solid var(--line);
+    text-decoration:none;transition:padding-inline .25s,background .25s;
+  }
+  .row:hover{background:rgba(183,211,217,.32);padding-inline:.9rem}
+  .row h3{
+    font-family:var(--f-disp);font-weight:800;font-stretch:92%;
+    font-size:clamp(1.05rem,2vw,1.4rem);margin:0;letter-spacing:-.022em;text-transform:uppercase;
+  }
+  .row p{margin:0;font-size:.92rem;line-height:1.6;color:rgba(25,43,47,.78)}
+  .row__go{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-ink);white-space:nowrap}
+
+  /* signup */
+  .signup{background:var(--teal-ink);color:var(--cream);padding-block:clamp(2.8rem,6vw,4.6rem)}
+  .signup__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.8rem,5vw,4.5rem);align-items:center}
+  .signup h2{
+    font-family:var(--f-disp);font-weight:900;font-stretch:88%;
+    font-size:clamp(1.8rem,4.2vw,3.2rem);line-height:.94;letter-spacing:-.038em;
+    margin:.7rem 0 1rem;text-transform:uppercase;
+  }
+  .signup h2 em{font-style:normal;color:var(--pale)}
+  .signup p{margin:0;color:rgba(252,248,237,.84);max-width:38ch}
+  .signup .eyebrow{color:var(--pale)}
+  form{display:grid;gap:.55rem}
+  form label{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pale)}
+  form input{
+    padding:.9rem 1rem;border:1px solid rgba(252,248,237,.42);background:rgba(0,0,0,.16);
+    color:var(--cream);font-family:var(--f-body);font-size:.95rem;
+  }
+  form input::placeholder{color:rgba(252,248,237,.55)}
+  form input:focus{outline:2px solid var(--pale);outline-offset:1px;border-color:var(--pale)}
+  form button{
+    padding:.9rem;border:0;cursor:pointer;background:var(--pale);color:var(--deep);
+    font-family:var(--f-body);font-size:.74rem;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;transition:background .22s;
+  }
+  form button:hover{background:var(--cream)}
+  .fine{font-size:.71rem;color:rgba(252,248,237,.72);margin:.3rem 0 0}
+
+  /* footer */
+  footer{background:var(--deep);color:var(--cream);padding-block:clamp(2.4rem,5vw,3.6rem) 1.5rem}
+  .foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(1.4rem,3vw,2.6rem);padding-bottom:clamp(2rem,4vw,3rem);border-bottom:1px solid rgba(252,248,237,.16)}
+  .foot__mark{font-family:var(--f-disp);font-weight:900;font-size:1.2rem;letter-spacing:.32em;text-transform:uppercase;margin:0 0 .9rem;display:flex;align-items:center;gap:.5rem;font-stretch:110%}
+  .foot__mark i{width:7px;height:7px;border-radius:50%;background:var(--mid)}
+  .foot p{margin:0;color:rgba(252,248,237,.82);font-size:.87rem;max-width:28ch;line-height:1.6}
+  .foot h4{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(252,248,237,.7);margin:0 0 .85rem}
+  .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem;font-size:.87rem}
+  .foot ul a{color:rgba(252,248,237,.88);text-decoration:none;transition:color .2s}
+  .foot ul a:hover{color:var(--pale)}
+  .foot__bottom{display:flex;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;padding-top:1.4rem;font-size:.72rem;color:rgba(252,248,237,.74)}
+
+  .rv{opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.2,.7,.2,1),transform .85s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+
+  @media(max-width:1000px){
+    .split{grid-template-columns:1fr;min-height:0}
+    .split__photo{height:min(56vh,440px);order:-1}
+    .split__type::after{display:none}
+    .facts__in{grid-template-columns:1fr 1fr}
+    .fact{border-left:0;border-top:1px solid rgba(25,43,47,.18);padding-left:0}
+    .ed{grid-template-columns:1fr}
+    .tri{grid-template-columns:1fr}
+    .tri > div{border-left:0;padding-left:0;border-top:1px solid rgba(252,248,237,.14)}
+    .tri > div:first-child{border-top:0}
+    .feat{grid-template-columns:1fr}
+    .feat__img{height:min(52vh,420px)}
+    .feat__txt{border-left:0;border-top:1px solid var(--line-2)}
+    .signup__grid{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr 1fr}
+    .nav__links{display:none}
+  }
+  @media(max-width:640px){
+    .row{grid-template-columns:1fr auto;row-gap:.4rem}
+    .row p{grid-column:1 / -1}
+    .foot{grid-template-columns:1fr}
+    .facts__in{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+    .rv{opacity:1 !important;transform:none !important}
+  }
+  :focus-visible{outline:3px solid var(--pale);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__in">
+    <a class="logo" href="#"><i></i>Breathe</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#experience">Experience</a>
+      <a href="#visit">Plan your visit</a>
+      <a href="#involved">Get involved</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="nav__cta" href="#signup">Get updates</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO: hard split, photo at full strength -->
+  <section class="split">
+    <div class="split__type">
+      <span class="badge"><i></i>2027 &middot; dates announced soon</span>
+      <h1>
+        Discover<br>your <em>purpose.</em>Awaken our world.
+      </h1>
+      <p class="split__sub">
+        A community grounded in the belief that everyone has a higher purpose. In connection
+        with nature, we create a space to explore, grow, and step into your full potential.
+      </p>
+      <div class="split__cta">
+        <a class="btn btn--solid" href="#signup">Be first to know</a>
+        <a class="btn" href="#experience">Explore the weekend</a>
+      </div>
+    </div>
+    <div class="split__photo">
+      <img alt="Slacklines strung above the pond at Deerfields" fetchpriority="high"
+           src="https://static.wixstatic.com/media/9f397e_15fa846847a3417b804e3df86226afd9~mv2.jpeg/v1/fill/w_1400,h_1600,al_c,q_88/file.jpg">
+      <span class="photo-credit">Deerfields &middot; Horse Shoe, NC</span>
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <dl class="facts">
+    <div class="facts__in">
+      <div class="fact"><dt>Next gathering</dt><dd>2027 &middot; TBA</dd></div>
+      <div class="fact"><dt>Where</dt><dd>Horse Shoe, NC</dd></div>
+      <div class="fact"><dt>Run by</dt><dd>100% volunteers</dd></div>
+      <div class="fact"><dt>Camping</dt><dd>Included</dd></div>
+    </div>
+  </dl>
+
+  <!-- ABOUT -->
+  <section class="sec" id="about">
+    <div class="shell ed">
+      <div class="rv">
+        <span class="eyebrow">Who we are</span>
+        <h2 class="d" style="margin-top:1rem">Something<br>greater <em>than ourselves.</em></h2>
+      </div>
+      <div class="ed__body rv">
+        <p>BREATHE is a community grounded in the belief that everyone has a higher purpose. Alongside Mother Nature we manifest an environment for each individual to discover that purpose, write their own story, and achieve their highest potential.</p>
+        <p>The workshops, classes, performances, discussions, walks, and games that fill the weekend aren't created by a hired programming team. They're created by people in this community who are passionate about something and feel called to share it.</p>
+        <p class="quote">We dissolve the barriers between the seen and the unseen, revealing a community that is whole, inter-connected, and free.</p>
+        <p>We gather at Deerfields — a natural setting that invites us to slow down, connect, and live simply together for the weekend. Primitive camping, well water, outdoor showers, and a shared meal tent. No vendors. No spectacle. Just a community building the thing it wants to attend.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL-STRENGTH PHOTO BAND -->
+  <div class="band">
+    <img alt="The Balance Community Pond at Deerfields" loading="lazy"
+         src="https://static.wixstatic.com/media/9f397e_1648d2b1c7594386b39c4bc0e620af64~mv2.jpeg/v1/fill/w_2000,h_900,al_c,q_85/file.jpg">
+  </div>
+
+  <!-- PILLARS -->
+  <section class="sec sec--dark" id="experience">
+    <div class="shell">
+      <div class="rv" style="max-width:48ch">
+        <span class="eyebrow">What holds us together</span>
+        <h2 class="d" style="margin-top:1rem">The <em>Jelly</em></h2>
+      </div>
+      <div class="tri">
+        <div class="rv"><span class="tri__n">i.</span><h3>Mind</h3><p>Through the selfless service of sharing our passions as teachers we build confidence, initiative, and connection. As students we gain new perspectives and sparks to take with us.</p></div>
+        <div class="rv"><span class="tri__n">ii.</span><h3>Body</h3><p>Through physical practices we challenge our own belief system of what our bodies are capable of — priming us to more fully receive and integrate the weekend.</p></div>
+        <div class="rv"><span class="tri__n">iii.</span><h3>Human Spirit</h3><p>Through giving and receiving without expectation we understand all is connected. The human spirit is the Jelly that forms a lasting connection between all of us.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE: photo | type -->
+  <section class="feat" id="visit">
+    <div class="feat__img">
+      <img alt="Camping among the trees at Deerfields" loading="lazy"
+           src="https://static.wixstatic.com/media/9f397e_87e561277ca24a4bac2d7830433cb04c~mv2.jpg/v1/fill/w_1200,h_1200,al_c,q_85/file.jpg">
+    </div>
+    <div class="feat__txt">
+      <span class="eyebrow">Plan your visit</span>
+      <h2 class="d" style="margin:1rem 0 1.3rem">Deerfields<br><em>Horse Shoe, NC</em></h2>
+      <p>Twenty minutes south of Asheville, and twenty from the airport. Primitive camping is included with a weekend pass, in Elysian Fields and Valhalla. Free overnight parking onsite.</p>
+      <p>Potable well water is free; ice is sold onsite. No indoor toilets or showers — we rely on port-o-johns and outdoor showers. Come prepared to be self-reliant, and lean on a neighbor to fill the gaps.</p>
+      <p>No food vendors. A Community Meal Prep Tent has shared stoves, tables, chairs, and basic utensils.</p>
+      <div class="tags"><span>Camping included</span><span>Van &amp; RV spots</span><span>Free parking</span><span>Well water</span><span>No vendors</span></div>
+    </div>
+  </section>
+
+  <!-- INVOLVED -->
+  <section class="sec sec--sand" id="involved">
+    <div class="shell">
+      <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap">
+        <div>
+          <span class="eyebrow">Everyone contributes</span>
+          <h2 class="d" style="margin-top:1rem">Get <em>involved</em></h2>
+        </div>
+        <p style="margin:0;max-width:34ch;color:rgba(25,43,47,.78);font-size:.95rem">Breathe Fest is a 100% volunteer-run festival. Every hour put toward organizing and running it is given freely.</p>
+      </div>
+      <div class="rows">
+        <a class="row rv" href="#"><h3>Lead a workshop</h3><p>Movement, creativity, nature connection, personal growth, music, play, wellness, storytelling, skills, or conversation — if you feel called to share it, the weekend is built for it.</p><span class="row__go">Apply &rarr;</span></a>
+        <a class="row rv" href="#"><h3>Volunteer</h3><p>Rigging, kitchen, activities, and the Peace Holders — the teams that hold the container. Join the people who make the whole thing exist.</p><span class="row__go">Join &rarr;</span></a>
+        <a class="row rv" href="#"><h3>Flow it Forward</h3><p>A limited number of full-event tickets for people facing financial barriers — with a request to carry that energy forward into your own community.</p><span class="row__go">Apply &rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNUP -->
+  <section class="signup" id="signup">
+    <div class="shell signup__grid">
+      <div class="rv">
+        <span class="eyebrow">Breathe 2027</span>
+        <h2>Stay close<br><em>to the fire.</em></h2>
+        <p>Dates, applications, and ticket sales. One letter each time there's something real to tell you.</p>
+      </div>
+      <form class="rv" onsubmit="event.preventDefault();this.querySelector('button').textContent='You\u2019re on the list \u2713'">
+        <label for="e1">Email address</label>
+        <input id="e1" type="email" placeholder="you@example.com" required autocomplete="email">
+        <button type="submit">Sign up</button>
+        <p class="fine">A handful of emails a year. Unsubscribe any time.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="foot">
+      <div><p class="foot__mark"><i></i>Breathe</p><p>Discover your purpose. Awaken our world. A transformative gathering at Deerfields in Horse Shoe, North Carolina.</p></div>
+      <div><h4>Festival</h4><ul><li><a href="#experience">The experience</a></li><li><a href="#">Schedule</a></li><li><a href="#">Tickets</a></li><li><a href="#visit">Plan your visit</a></li></ul></div>
+      <div><h4>Community</h4><ul><li><a href="#">Teach or perform</a></li><li><a href="#">Volunteer</a></li><li><a href="#">Flow it Forward</a></li><li><a href="#">Code of conduct</a></li></ul></div>
+      <div><h4>Connect</h4><ul><li><a href="https://www.instagram.com/breathefest/" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/breathefest/" rel="noopener">Facebook</a></li><li><a href="mailto:hello@discoverbreathe.com">hello@discoverbreathe.com</a></li><li><a href="#">Donate</a></li></ul></div>
+    </div>
+    <div class="foot__bottom">
+      <span>&copy; BREATHE &mdash; Brought to you by the CSA &amp; RMS</span>
+      <span>Deerfields &middot; 101 Watagnee Trail, Horse Shoe, NC 28742</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach((e,i) => {
+    if (e.isIntersecting) { e.target.style.transitionDelay = (i*70)+'ms'; e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.1, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
