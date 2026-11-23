@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BREATHE — Warmer Typeface Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Alegreya+Sans:wght@400;900&family=Karla:wght@400;800&family=Rubik:wght@400;800&family=Archivo:wght@800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FCF8ED;--deep:#192B2F;--teal:#4A818E;--teal-ink:#31565F;
+    --rule:rgba(25,43,47,.2);--muted:rgba(25,43,47,.7);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--deep);font-family:"Karla",system-ui,sans-serif;line-height:1.62;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1160px;margin-inline:auto;padding:clamp(1.6rem,4vw,3.6rem) clamp(1.1rem,3.5vw,2.4rem) 5rem}
+  header{border-bottom:2px solid var(--deep);padding-bottom:1.5rem;margin-bottom:1.4rem}
+  .eyebrow{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  h1{font-family:"Archivo",sans-serif;font-weight:800;font-size:clamp(1.9rem,5vw,3.1rem);line-height:.96;letter-spacing:-.04em;margin:.55rem 0 .9rem;text-transform:uppercase}
+  header p{margin:0;max-width:66ch;color:var(--muted);font-size:.95rem}
+  header p+p{margin-top:.65rem}
+  header b{color:var(--deep);font-weight:700}
+
+  .brief{margin:1.3rem 0 0;padding:1.1rem 1.25rem;background:#fff;border:1px solid var(--rule);font-size:.88rem;color:var(--muted)}
+  .brief b{color:var(--deep);font-weight:700}
+  .brief ul{margin:.55rem 0 0;padding-left:1.1rem;display:grid;gap:.3rem}
+
+  .cards{display:grid;gap:clamp(1rem,2.2vw,1.5rem);margin-top:clamp(1.4rem,3vw,2.2rem)}
+  .card{border:2px solid var(--deep);background:#fff}
+  .card__head{display:flex;justify-content:space-between;align-items:flex-start;gap:1.2rem;padding:1rem 1.3rem;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+  .card__id{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+  .tag{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:.22rem .5rem;border:1px solid var(--rule);border-radius:999px;color:var(--muted)}
+  .card__name{font-size:.82rem;font-weight:700}
+  .card__link{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;text-decoration:none;border-bottom:2px solid var(--deep);padding-bottom:.1rem;white-space:nowrap}
+  .spec{padding:1.4rem 1.3rem 1.1rem;border-bottom:1px solid var(--rule)}
+  .spec__big{line-height:.94;letter-spacing:-.03em;margin:0;color:var(--deep)}
+  .spec__row{display:flex;align-items:baseline;gap:1.4rem;flex-wrap:wrap;margin-top:.9rem;font-size:.79rem;color:var(--muted)}
+  .spec__row b{font-weight:700;color:var(--deep)}
+  .card__body{padding:1.1rem 1.3rem 1.3rem;font-size:.88rem;color:var(--muted)}
+  .card__body p{margin:0 0 .6rem}
+  .card__body b{color:var(--deep);font-weight:700}
+  .pros{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.5rem}
+  .pros div > span{display:block;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:.3rem;color:var(--teal-ink)}
+  .pros ul{margin:0;padding-left:1rem;font-size:.85rem;display:grid;gap:.25rem}
+  @media(max-width:640px){.pros{grid-template-columns:1fr}}
+
+  .f-cabin .spec__big{font-family:"Cabin";font-weight:700;font-size:clamp(1.7rem,4.4vw,3rem)}
+  .f-alegreya .spec__big{font-family:"Alegreya Sans";font-weight:900;font-size:clamp(1.7rem,4.4vw,3rem)}
+  .f-karla .spec__big{font-family:"Karla";font-weight:800;font-size:clamp(1.7rem,4.4vw,3rem)}
+  .f-rubik .spec__big{font-family:"Rubik";font-weight:800;font-size:clamp(1.7rem,4.4vw,3rem)}
+
+  .note{margin-top:clamp(2rem,4vw,2.8rem);border-top:1px solid var(--rule);padding-top:1.5rem;color:var(--muted);font-size:.89rem}
+  .note h3{font-family:"Archivo",sans-serif;font-weight:800;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--deep);margin:0 0 .7rem}
+  .note ul{margin:0;padding-left:1.1rem;display:grid;gap:.4rem}
+  code{font-family:ui-monospace,monospace;font-size:.85em;background:rgba(25,43,47,.08);padding:.1em .35em}
+  .prev{margin-top:1rem;font-size:.86rem}
+  .prev a{color:var(--teal-ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">BREATHE &middot; Warmer typefaces</p>
+    <h1>Four earthier options</h1>
+    <p>
+      Same Stacked layout, same teal. These four move toward <b>humanist and organic</b> rather than
+      geometric — the letterforms come from handwriting and calligraphy rather than compass and ruler.
+      That's the technical difference behind "warmer".
+    </p>
+    <div class="brief">
+      <b>"Industrious hippies."</b> That's a precise brief, and it rules out two easy mistakes:
+      <ul>
+        <li><b>Not tie-dye whimsy</b> — rounded novelty faces would read as costume, not craft.</li>
+        <li><b>Not corporate neutrals</b> — the geometric grotesques we just looked at are competent but bloodless.</li>
+        <li><b>Capable and unpretentious</b> — people who build slackline parks, cook for 300, and rig a stage, but who also talk about the Jelly without irony.</li>
+      </ul>
+      So: humanist skeletons, slightly open apertures, a little irregularity in the curves, and enough weight range to carry a big headline without looking flimsy.
+    </div>
+  </header>
+
+  <div class="cards">
+    <div class="card f-cabin">
+      <div class="card__head">
+        <div class="card__id"><span class="tag">E</span><span class="card__name">Cabin</span><span class="tag">Humanist &middot; Outdoorsy</span></div>
+        <a class="card__link" href="font-cabin.html">Open &rarr;</a>
+      </div>
+      <div class="spec">
+        <p class="spec__big">Discover your purpose.<br>Awaken our world.</p>
+        <div class="spec__row"><span>Weight <b>700</b></span><span>Tracking <b>-0.022em</b></span><span>Line-height <b>0.97</b></span></div>
+      </div>
+      <div class="card__body">
+        <p>Based on Edward Johnston's 1916 lettering for the London Underground — humanist bones, warm curves, and a faintly hand-lettered quality. The most outdoorsy of the four, and the least fussy.</p>
+        <div class="pros">
+          <div><span>Strengths</span><ul><li>Genuinely warm, not cute</li><li>Reads "made by hand"</li><li>Excellent in paragraphs</li></ul></div>
+          <div><span>Watch out</span><ul><li>Tops out at 700</li><li>Softer at display size</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card f-alegreya">
+      <div class="card__head">
+        <div class="card__id"><span class="tag">F</span><span class="card__name">Alegreya Sans</span><span class="tag">Calligraphic &middot; Lively</span></div>
+        <a class="card__link" href="font-alegreya.html">Open &rarr;</a>
+      </div>
+      <div class="spec">
+        <p class="spec__big">Discover your purpose.<br>Awaken our world.</p>
+        <div class="spec__row"><span>Weight <b>900</b></span><span>Tracking <b>-0.024em</b></span><span>Line-height <b>0.93</b></span></div>
+      </div>
+      <div class="card__body">
+        <p>Carries real calligraphic DNA — the pen angle shows in the strokes. Lively and slightly unpredictable, with a Black weight that gives the headline genuine presence. The most characterful that still reads cleanly.</p>
+        <div class="pros">
+          <div><span>Strengths</span><ul><li>Strong personality</li><li>Has a true Black (900)</li><li>Warm without novelty</li></ul></div>
+          <div><span>Watch out</span><ul><li>Slightly literary</li><li>Busier at small sizes</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card f-karla">
+      <div class="card__head">
+        <div class="card__id"><span class="tag">G</span><span class="card__name">Karla</span><span class="tag">Grotesque &middot; Odd &amp; warm</span></div>
+        <a class="card__link" href="font-karla.html">Open &rarr;</a>
+      </div>
+      <div class="spec">
+        <p class="spec__big">Discover your purpose.<br>Awaken our world.</p>
+        <div class="spec__row"><span>Weight <b>800</b></span><span>Tracking <b>-0.030em</b></span><span>Line-height <b>0.95</b></span></div>
+      </div>
+      <div class="card__body">
+        <p>A grotesque with deliberately quirky details — irregular curves, unusual terminals. It's your current site's body font, so this one is already familiar to your audience. Warmth through oddness rather than softness.</p>
+        <div class="pros">
+          <div><span>Strengths</span><ul><li>Already on your site</li><li>Warm via irregularity</li><li>Great body text</li></ul></div>
+          <div><span>Watch out</span><ul><li>Less impact at display size</li><li>Quirks can distract</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card f-rubik">
+      <div class="card__head">
+        <div class="card__id"><span class="tag">H</span><span class="card__name">Rubik</span><span class="tag">Soft &middot; Rounded corners</span></div>
+        <a class="card__link" href="font-rubik.html">Open &rarr;</a>
+      </div>
+      <div class="spec">
+        <p class="spec__big">Discover your purpose.<br>Awaken our world.</p>
+        <div class="spec__row"><span>Weight <b>800</b></span><span>Tracking <b>-0.032em</b></span><span>Line-height <b>0.94</b></span></div>
+      </div>
+      <div class="card__body">
+        <p>Softly rounded corners and a friendly, slightly condensed skeleton. The most overtly approachable of the four, and the one that reads youngest. Modern and well-built, but the friendliness is more "app" than "campfire".</p>
+        <div class="pros">
+          <div><span>Strengths</span><ul><li>Very approachable</li><li>Strong 800 for headlines</li><li>Modern and clean</li></ul></div>
+          <div><span>Watch out</span><ul><li>Friendliest but least earthy</li><li>Can read a little tech-y</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>Verified on all four</h3>
+    <ul>
+      <li>Zero WCAG AA contrast failures at 390 and 1440 px.</li>
+      <li>Headline holds to 3 lines at both widths — no orphan words, no overflow.</li>
+      <li>Fonts confirmed loading, weights within each family's real range (Cabin genuinely stops at 700).</li>
+      <li>Palette unchanged: teal <code>#B7D3D9</code>–<code>#192B2F</code> on cream <code>#FCF8ED</code>.</li>
+    </ul>
+    <p class="prev"><a href="typefaces.html">&larr; Back to the full typeface index</a></p>
+  </div>
+</div>
+</body>
+</html>
