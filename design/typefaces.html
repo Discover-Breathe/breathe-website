@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BREATHE — Typeface Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;600&family=Archivo:wght@400;800&family=Hanken+Grotesk:wght@400;800&family=Darker+Grotesque:wght@400;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FCF8ED;
+    --deep:#192B2F;
+    --teal:#4A818E;
+    --teal-ink:#31565F;
+    --rule:rgba(25,43,47,.2);
+    --muted:rgba(25,43,47,.66);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--cream);color:var(--deep);
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin-inline:auto;padding:clamp(2rem,6vw,5rem) clamp(1.2rem,4vw,2rem) 4rem}
+
+  h1{
+    font-family:"Archivo",sans-serif;font-weight:800;
+    font-size:clamp(1.1rem,.9rem + 1vw,1.35rem);
+    letter-spacing:.28em;text-transform:uppercase;
+    margin:0 0 .5rem;
+  }
+  .sub{margin:0 0 clamp(1.6rem,4vw,2.6rem);font-size:.86rem;color:var(--muted)}
+
+  ul{list-style:none;margin:0;padding:0;border-top:2px solid var(--deep)}
+  li{border-bottom:1px solid var(--rule)}
+  a{
+    display:flex;align-items:baseline;justify-content:space-between;gap:1.2rem;
+    padding:clamp(1rem,2.6vw,1.35rem) 0;
+    text-decoration:none;color:var(--deep);
+    transition:padding-left .2s,color .2s;
+  }
+  a:hover{padding-left:.6rem;color:var(--teal-ink)}
+  a:hover .arrow{transform:translateX(4px)}
+  .num{
+    font-size:.66rem;font-weight:600;letter-spacing:.14em;
+    color:var(--teal-ink);min-width:1.6rem;flex:0 0 auto;
+  }
+  .name{flex:1;line-height:1.05}
+  .arrow{font-size:1rem;color:var(--teal-ink);transition:transform .2s;flex:0 0 auto}
+
+  /* each name set in its own typeface */
+  .r1 .name{font-family:"Familjen Grotesk";font-weight:600;font-size:clamp(1.35rem,3.6vw,1.9rem);letter-spacing:-.028em}
+  .r2 .name{font-family:"Archivo";font-weight:800;font-size:clamp(1.35rem,3.6vw,1.9rem);letter-spacing:-.035em}
+  .r3 .name{font-family:"Hanken Grotesk";font-weight:800;font-size:clamp(1.35rem,3.6vw,1.9rem);letter-spacing:-.03em}
+  .r4 .name{font-family:"Darker Grotesque";font-weight:800;font-size:clamp(1.6rem,4.2vw,2.25rem);letter-spacing:-.02em}
+
+  .meta{
+    display:block;font-family:"Hanken Grotesk",sans-serif;
+    font-size:.7rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);margin-top:.45rem;
+  }
+
+  footer{margin-top:clamp(1.8rem,4vw,2.6rem);font-size:.8rem;color:var(--muted)}
+  footer a{display:inline;padding:0;color:var(--teal-ink);text-decoration:underline;text-underline-offset:2px}
+  footer a:hover{padding-left:0}
+
+  @media(max-width:480px){
+    a{flex-wrap:wrap;gap:.5rem}
+    .name{flex:1 1 100%;order:2}
+    .num{order:1}
+    .arrow{order:1;margin-left:auto}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Breathe &mdash; Typefaces</h1>
+  <p class="sub">Four options, applied to the Stacked layout.</p>
+
+  <ul>
+    <li class="r1">
+      <a href="font-familjen.html">
+        <span class="num">A</span>
+        <span class="name">Familjen Grotesk<span class="meta">Humanist &middot; Warm</span></span>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </li>
+    <li class="r2">
+      <a href="font-archivo.html">
+        <span class="num">B</span>
+        <span class="name">Archivo<span class="meta">Grotesque &middot; Sturdy</span></span>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </li>
+    <li class="r3">
+      <a href="font-hanken.html">
+        <span class="num">C</span>
+        <span class="name">Hanken Grotesk<span class="meta">Neo-grotesque &middot; Round</span></span>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </li>
+    <li class="r4">
+      <a href="font-darker.html">
+        <span class="num">D</span>
+        <span class="name">Darker Grotesque<span class="meta">Condensed &middot; Characterful</span></span>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </li>
+  </ul>
+
+  <footer>
+    <a href="fonts.html">Specimens &amp; notes</a> &nbsp;&middot;&nbsp; <a href="ideas.html">Structure ideas</a>
+  </footer>
+</div>
+</body>
+</html>
