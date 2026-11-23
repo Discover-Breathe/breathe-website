@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Design prototypes and working files — reachable, but kept out of search results.
+Disallow: /design/
